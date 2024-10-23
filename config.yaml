@@ -21,7 +21,7 @@ carpentry_description: 'Broadly, this lesson aims to teach people how to clean, 
 title: 'Timeseries in R' # FIXME
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
-created: '10/23/2024' # FIXME: ( ~ means empty, replace with date formatted as above)
+created: '2024-10-23' # FIXME: ( ~ means empty, replace with date formatted as above)
 
 # Comma-separated list of keywords for the lesson
 keywords: 'R, time series, data analysis, visualization, data, The Carpentries' # FIXME
