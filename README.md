@@ -1,6 +1,9 @@
-# The Carpentries Workbench Template R Markdown Lesson
+# Timeseries in R
 
 This lesson is a template lesson that uses [The Carpentries Workbench][workbench].
+This lesson aims to teach people how to clean, manipulate, analyze, and visulize field collected timeseries data.
+
+Authors: Maggi Kraft, Michelle Busch, Stephen Plont, Robert Ramos, Jerald Ibal
 
 ## Note about lesson life cycle stage
 Although the `config.yaml` states the life cycle stage as pre-alpha, **the template is stable and ready to use**. The life cycle stage is preset to `"pre-alpha"` as this setting is appropriate for new lessons initialised using the template.
