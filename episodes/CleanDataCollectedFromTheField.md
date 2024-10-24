@@ -54,14 +54,15 @@ ggplot(data= _____)+
 ```output
 The plot!
 ```
-
 :::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::: discussion
 
 Prompt for the learners to discuss.
 
-::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Challenge 2: Which piece of code would you use to subset the outliers? Which piece of code would you use to subset NA values? Use this code to change outliers to NA.
 
