@@ -19,14 +19,9 @@ exercises: 2
 
 ## Introduction
 
-This is a lesson created via The Carpentries Workbench. It is written in
-[Pandoc-flavored Markdown](https://pandoc.org/MANUAL.txt) for static files and
-[R Markdown][r-markdown] for dynamic files that can render code into output. 
-Please refer to the [Introduction to The Carpentries 
-Workbench](https://carpentries.github.io/sandpaper-docs/) for full documentation.
+This is lesson, created follwing [The Carpentries Workbench](https://carpentries.github.io/sandpaper-docs/), is meant to be an introduction to learning how to work with timeseries datasets in R. 
 
-What you need to know is that there are three sections required for a valid
-Carpentries lesson template:
+There are three sections that will appear at the start of every lesson:
 
  1. `questions` are displayed at the beginning of the episode to prime the
     learner for the content.
@@ -34,6 +29,21 @@ Carpentries lesson template:
     the questions.
  3. `keypoints` are displayed at the end of the episode to reinforce the
     objectives.
+
+
+::::::::::::::::::::::::::::::::::::: prereqs
+
+To successfully participate in this course, we ask that participants meet the following prerequisites: 
+
+- Have an understanding of how file explorer works - creating folders, how to access and download files and moving them into the approriate folder (uses daily)
+- Be able to use and download files from internet (uses daily)
+- Be able to open, use basic functions, and edit in excel (uses weekly - monthly)
+- Some very basic statistical knowledge (what is a mean, median, boxplot, distribution etc.) (any previous use)
+- An overall understanding of why timeseries data is important (any previous use) 
+- Basic R: they have opened it, made projects, used basic functions (View, summary, mean, sd, etc.) and can load a dataset and install packages (any previous use) 
+- R coding: Base R: understanding of aggregrate() and some experience with tidyverse (has used at least twice before)
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
