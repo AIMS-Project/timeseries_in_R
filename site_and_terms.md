@@ -1,31 +1,38 @@
 ---
-title: "Clean data collected from the field"
-teaching: 20
-exercises: 10
+title: "Define common timeseries terms and familiarize yourself with the field site"
+teaching: XX
+exercises: XX
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How can you clean time series datasets collected from the field? 
+- What can you expect from this training?
+- What is a timeseries and why are they important?
+- Where are these data coming from?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Subset rows and columns
-- Identify outliers and interpolate missing data
-- Filter outliers and missing data
-- Create a new dataframe
+- Create an R project with folders
+- Get familiar with datasets
+- Define common terms used to describe timeseries
+- Import csv data into R
+- Understand differences between base R and tidyverse approaches
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Introduction
+## About this Lesson
 
-In this episode, we will clean the field data and prepare the data for analysis and visualization. To do this, we will: 
+This lesson is meant to get us started on working with timeseries data. For this course, we wil 
+create an R project and make sure we have access to the datasets. During this lesson we will 
+familiarize ourselves with the data. This data was collected as a part of an NSF funded project, 
+the Aquatic Intermittency effect of Microbiomes in Streams (AIMS; OSF OIA 2019603).  
 
-1. Identify potentially problematic data points (outliers)  
-2. Interpolate missing data  
-3. Change data from UTC to CT
+In this lesson we will review how to 1. make a project in R, 2. familiarize ourselves with the 
+data, 3. define common terms used in this lesson, 4. import .csv files, and 5. introuduce differences
+between coding in base R and using tidyverse.
+
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
@@ -34,17 +41,54 @@ associated with the lessons. They appear in the "Instructor View"
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+To get familiar with the data, let's first make sure we remember how to create an R Project!
+
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Challenge 1: Plot the other datasets (UTC and CT) and identify outliers.
+Using file explorer, create a new file and R project for this lesson. 
 
-Fill in the blank: Using code from plotting recreate the plot and visually identify outliers. 
+::::::::::::::::::::::::::::::::::::: discussion 
+
+What files would be good to include?
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: solution 
+
+Typically, we encourage to make files for:
+1. data
+2. data_processed
+3. scripts
+
+:::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+## Exercise #1 
+
+Can you find the Konza Prairie Biological Station on Google Maps? 
+What state did this project take place in? What is the closest city?
+
+:::::::::::::::::::::::: solution 
+
+This project took place in Kansas, USA. 
+The closest major city is Manhattan, KS. 
+ 
+:::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::
+
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+## Exercise #2
+
+How do you upload a .csv file into R?
 
 ```r
-ggplot(data= _____)+
- geom_line(aes(x=xxxx, y=yyyy))+
- xlab("Time")+
- ylab("Temperature (degrees symbol C)")
+read.csv("C://", header = TRUE)
 ```
 
 :::::::::::::::::::::::: solution 
@@ -52,28 +96,18 @@ ggplot(data= _____)+
 ## Output
  
 ```output
-The plot!
+[1] "This new lesson looks good"
 ```
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-::: discussion
-
-Prompt for the learners to discuss.
 
 :::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: challenge 
 
-## Challenge 2: Which piece of code would you use to subset the outliers? Which piece of code would you use to subset NA values? Use this code to change outliers to NA.
+
+## Challenge 2: how do you nest solutions within challenge blocks?
 
 :::::::::::::::::::::::: solution 
 
-a) df[c(),]
-b) df[df$datetime> "date" & df$datetime< "date",]
-c) the tydyr method I don't know (subset?)
-d) df$field[is.na(df$field),]
-e) method I don't know to find NA values
+You can add a line with at least three colons and a `solution` tag.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
