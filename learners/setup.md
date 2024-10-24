@@ -1,9 +1,20 @@
 ---
-title: Setup
+title: Setup for Timeseries in R
 ---
 
-FIXME: Setup instructions live in this document. Please specify the tools and
-the data sets the Learner needs to have installed.
+::::::::::::::::::::::::::::::::::::: prereqs
+
+To successfully participate in this course, we ask that participants meet the following prerequisites: 
+
+- Have an understanding of how file explorer works - creating folders, how to access and download files and moving them into the approriate folder (uses daily)
+- Be able to use and download files from internet (uses daily)
+- Be able to open, use basic functions, and edit in excel (uses weekly - monthly)
+- Some very basic statistical knowledge (what is a mean, median, boxplot, distribution etc.) (any previous use)
+- An overall understanding of why timeseries data is important (any previous use) 
+- Basic R: they have opened it, made projects, used basic functions (View, summary, mean, sd, etc.) and can load a dataset and install packages (any previous use) 
+- R coding: Base R: understanding of aggregrate() and some experience with tidyverse (has used at least twice before)
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Data Sets
 
@@ -14,7 +25,24 @@ FIXME: place any data you want learners to use in `episodes/data` and then use
 -->
 Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
 
+post them onto HydroShare??
+
 ## Software Setup
+
+Install the following packages:
+
+- tidyverse (includes dyplor, ggplot2, and lubridate)
+
+```r
+
+install.packages("tidyverse")
+
+```
+
+Create an .Rproject for this workshop with the following folders:
+- data
+- data_processed
+- scripts
 
 ::::::::::::::::::::::::::::::::::::::: discussion
 
