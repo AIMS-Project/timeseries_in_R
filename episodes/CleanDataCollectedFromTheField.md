@@ -36,7 +36,7 @@ associated with the lessons. They appear in the "Instructor View"
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Challenge 1: Plot the other datasets (UTC and CT) and identify outliers.
+## Exercise 1: Plot the other datasets (UTC and CT) and identify outliers.
 
 Fill in the blank: Using code from plotting recreate the plot and visually identify outliers. 
 
@@ -65,16 +65,25 @@ Prompt for the learners to discuss.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Challenge 2: Which piece of code would you use to subset the outliers? Which piece of code would you use to subset NA values? Use this code to change outliers to NA.
+## Exercise 2: Which piece of code would you use to subset the outliers? Which piece of code would you use to subset NA values? Use this code to change outliers to NA.
 
-:::::::::::::::::::::::: solution 
+Test the following code:
 
+```r
 a) df[c(),]
 b) df[df$datetime> "date" & df$datetime< "date",]
 c) the tydyr method I don't know (subset?)
 d) df$field[is.na(df$field),]
 e) method I don't know to find NA values
+```
 
+:::::::::::::::::::::::: solution 
+
+## Output
+
+```output
+What worked and what didn't work?
+```
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
