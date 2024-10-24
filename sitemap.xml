@@ -67,6 +67,9 @@
     <loc>https://timeseries_in_R.github.io/NA/instructor/reference.html</loc>
   </url>
   <url>
+    <loc>https://timeseries_in_R.github.io/NA/instructor/site_and_terms.html</loc>
+  </url>
+  <url>
     <loc>https://timeseries_in_R.github.io/NA/instructor-notes.html</loc>
   </url>
   <url>
@@ -83,5 +86,8 @@
   </url>
   <url>
     <loc>https://timeseries_in_R.github.io/NA/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://timeseries_in_R.github.io/NA/site_and_terms.html</loc>
   </url>
 </urlset>

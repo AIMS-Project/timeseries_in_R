@@ -67,6 +67,7 @@ contact: 'maggikraft4@gmail.com or m.h.busch@ku.edu' # FIXME
 # Order of episodes in your lesson
 episodes: 
 - introduction.Rmd
+- site_and_terms.md
 - CleanDataCollectedFromTheField.md
 
 # Information for Learners

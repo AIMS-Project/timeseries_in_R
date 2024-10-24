@@ -118,11 +118,11 @@
   Timeseries in R
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 29%" class="percentage">
-    29%
+<aside class="col-md-12 lesson-progress"><div style="width: 42%" class="percentage">
+    42%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 29%" aria-valuenow="29" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 42%" aria-valuenow="42" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -212,13 +212,22 @@
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush3">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading3">
+        <a href="site_and_terms.html">2. Define common timeseries terms and familiarize yourself with the field site</a>
+    </div><!--/div.accordion-header-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
 <div class="accordion accordion-flush" id="accordionFlushcurrent">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-headingcurrent">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
-        2. Clean data collected from the field
+        3. Clean data collected from the field
         </span>
       </button>
     </div><!--/div.accordion-header-->
@@ -276,14 +285,14 @@
         <!-- START: inst/pkgdown/templates/content-instructor.html -->
   <div class="col-xl-8 col-lg-12 primary-content">
     <nav class="lesson-content mx-md-4" aria-label="Previous and Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
-        <a class="chapter-link" href="../instructor/introduction.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
+        <a class="chapter-link" href="../instructor/site_and_terms.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
         <a class="chapter-link float-end" href="../instructor/index.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link" href="../instructor/introduction.html" rel="prev">
+        <a class="chapter-link" href="../instructor/site_and_terms.html" rel="prev">
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
-          Previous: Using RMarkdown
+          Previous: Define common
         </a>
         <a class="chapter-link float-end" href="../instructor/index.html" rel="next">
           Home
@@ -342,7 +351,7 @@ for analysis and visualization. To do this, we will:</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor
@@ -376,7 +385,7 @@ visually identify outliers.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Output </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -387,15 +396,6 @@ visually identify outliers.</p>
 </div>
 </div>
 </div>
-<div id="challenge-1-plot-the-other-datasets-utc-and-ct-and-identify-outliers." class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="challenge-1-plot-the-other-datasets-utc-and-ct-and-identify-outliers." class="callout-inner">
-<h3 class="callout-title">Challenge 1: Plot the other datasets (UTC and
-CT) and identify outliers.<em> (continued)</em>
-</h3>
-<div class="callout-content">
 <div id="discussion1" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
@@ -407,11 +407,15 @@ CT) and identify outliers.<em> (continued)</em>
 </div>
 </div>
 </div>
-<div class="section level2">
-<h2 id="challenge-2-which-piece-of-code-would-you-use-to-subset-the-outliers-which-piece-of-code-would-you-use-to-subset-na-values-use-this-code-to-change-outliers-to-na-">Challenge 2: Which piece of code would you use to subset the
-outliers? Which piece of code would you use to subset NA values? Use
-this code to change outliers to NA.<a class="anchor" aria-label="anchor" href="#challenge-2-which-piece-of-code-would-you-use-to-subset-the-outliers-which-piece-of-code-would-you-use-to-subset-na-values-use-this-code-to-change-outliers-to-na-"></a></h2>
+<div id="challenge-2-which-piece-of-code-would-you-use-to-subset-the-outliers-which-piece-of-code-would-you-use-to-subset-na-values-use-this-code-to-change-outliers-to-na." class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
 </div>
+<div id="challenge-2-which-piece-of-code-would-you-use-to-subset-the-outliers-which-piece-of-code-would-you-use-to-subset-na-values-use-this-code-to-change-outliers-to-na." class="callout-inner">
+<h3 class="callout-title">Challenge 2: Which piece of code would you use to subset the outliers? Which piece of code would you use to subset NA
+values? Use this code to change outliers to NA.</h3>
+<div class="callout-content">
+
 </div>
 </div>
 </div>
@@ -420,7 +424,7 @@ this code to change outliers to NA.<a class="anchor" aria-label="anchor" href="#
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <ol style="list-style-type: lower-alpha"><li>df[c(),]</li>
 <li>df[df<span class="math inline">\(datetime&gt; "date" &amp;
@@ -484,14 +488,14 @@ any links that you are not going to use.
  -->
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
-        <a class="chapter-link" href="../instructor/introduction.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
+        <a class="chapter-link" href="../instructor/site_and_terms.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
         <a class="chapter-link float-end" href="../instructor/index.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link" href="../instructor/introduction.html" rel="prev">
+        <a class="chapter-link" href="../instructor/site_and_terms.html" rel="prev">
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
-          Previous: Using RMarkdown
+          Previous: Define common
         </a>
         <a class="chapter-link float-end" href="../instructor/index.html" rel="next">
           Home
