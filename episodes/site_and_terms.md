@@ -24,7 +24,14 @@ exercises: XX
 
 ## About this Lesson
 
-This lesson is meant to get us started on working with timeseries data. For this course, we wil create an R project and make sure we have access to the datasets. During this lesson we will familiarize ourselves with the data. This data was collected as a part of an NSF funded project, the Aquatic Intermittency effect of Microbiomes in Streams (AIMS; OSF XXXXX).
+This lesson is meant to get us started on working with timeseries data. For this course, we wil 
+create an R project and make sure we have access to the datasets. During this lesson we will 
+familiarize ourselves with the data. This data was collected as a part of an NSF funded project, 
+the Aquatic Intermittency effect of Microbiomes in Streams (AIMS; OSF OIA 2019603).  
+
+In this lesson we will review how to 1. make a project in R, 2. familiarize ourselves with the 
+data, 3. define common terms used in this lesson, 4. import .csv files, and 5. introuduce differences
+between coding in base R and using tidyverse.
 
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
@@ -34,14 +41,54 @@ associated with the lessons. They appear in the "Instructor View"
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+To get familiar with the data, let's first make sure we remember how to create an R Project!
+
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Challenge 1: Can you do it?
+Using file explorer, create a new file and R project for this lesson. 
 
-What is the output of this command?
+::::::::::::::::::::::::::::::::::::: discussion 
+
+What files would be good to include?
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: solution 
+
+Typically, we encourage to make files for:
+1. data
+2. data_processed
+3. scripts
+
+:::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+## Exercise #1 
+
+Can you find the Konza Prairie Biological Station on Google Maps? 
+What state did this project take place in? What is the closest city?
+
+:::::::::::::::::::::::: solution 
+
+This project took place in Kansas, USA. 
+The closest major city is Manhattan, KS. 
+ 
+:::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::
+
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+## Exercise #2
+
+How do you upload a .csv file into R?
 
 ```r
-paste("This", "new", "lesson", "looks", "good")
+read.csv("C://", header = TRUE)
 ```
 
 :::::::::::::::::::::::: solution 
@@ -53,6 +100,7 @@ paste("This", "new", "lesson", "looks", "good")
 ```
 
 :::::::::::::::::::::::::::::::::
+
 
 
 ## Challenge 2: how do you nest solutions within challenge blocks?
