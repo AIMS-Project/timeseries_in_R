@@ -6,7 +6,7 @@ exercises: XX
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- What should you expect from this training?
+- What can you expect from this training?
 - What is a timeseries and why are they important?
 - Where are these data coming from?
 
@@ -22,23 +22,10 @@ exercises: XX
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Introduction
+## About this Lesson
 
-This is a lesson created via The Carpentries Workbench. It is written in
-[Pandoc-flavored Markdown](https://pandoc.org/MANUAL.txt) for static files and
-[R Markdown][r-markdown] for dynamic files that can render code into output. 
-Please refer to the [Introduction to The Carpentries 
-Workbench](https://carpentries.github.io/sandpaper-docs/) for full documentation.
+This lesson is meant to get us started on working with timeseries data. For this course, we wil create an R project and make sure we have access to the datasets. During this lesson we will familiarize ourselves with the data. This data was collected as a part of an NSF funded project, the Aquatic Intermittency effect of Microbiomes in Streams (AIMS; OSF XXXXX).
 
-What you need to know is that there are three sections required for a valid
-Carpentries lesson template:
-
- 1. `questions` are displayed at the beginning of the episode to prime the
-    learner for the content.
- 2. `objectives` are the learning objectives for an episode displayed with
-    the questions.
- 3. `keypoints` are displayed at the end of the episode to reinforce the
-    objectives.
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
