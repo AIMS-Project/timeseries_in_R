@@ -1,7 +1,7 @@
 ---
 title: "Clean data collected from the field"
-teaching: 0
-exercises: 0
+teaching: 20
+exercises: 10
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
@@ -22,8 +22,9 @@ exercises: 0
 ## Introduction
 
 In this episode, we will clean the field data and prepare the data for analysis and visualization. To do this, we will: 
-1. Identify potentially problematic data points (outliers)
-2. Interpolate missing data
+
+1. Identify potentially problematic data points (outliers)  
+2. Interpolate missing data  
 3. Change data from UTC to CT
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
@@ -35,12 +36,15 @@ associated with the lessons. They appear in the "Instructor View"
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Challenge 1: Can you do it?
+## Challenge 1: Plot the other datasets (UTC and CT) and identify outliers.
 
-What is the output of this command?
+Fill in the blank: Using code from plotting recreate the plot and visually identify outliers. 
 
 ```r
-paste("This", "new", "lesson", "looks", "good")
+ggplot(data= _____)+
+ geom_line(aes(x=xxxx, y=yyyy))+
+ xlab("Time")+
+ ylab("Temperature (degrees symbol C)")
 ```
 
 :::::::::::::::::::::::: solution 
@@ -48,17 +52,26 @@ paste("This", "new", "lesson", "looks", "good")
 ## Output
  
 ```output
-[1] "This new lesson looks good"
+The plot!
 ```
 
 :::::::::::::::::::::::::::::::::
 
+::: discussion
 
-## Challenge 2: how do you nest solutions within challenge blocks?
+Prompt for the learners to discuss.
+
+::::::::::::::::::::::::::::::::
+
+## Challenge 2: Which piece of code would you use to subset the outliers? Which piece of code would you use to subset NA values? Use this code to change outliers to NA.
 
 :::::::::::::::::::::::: solution 
 
-You can add a line with at least three colons and a `solution` tag.
+a) df[c(),]
+b) df[df$datetime> "date" & df$datetime< "date",]
+c) the tydyr method I don't know (subset?)
+d) df$field[is.na(df$field),]
+e) method I don't know to find NA values
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
