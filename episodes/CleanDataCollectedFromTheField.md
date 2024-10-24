@@ -62,7 +62,8 @@ The plot!
 Prompt for the learners to discuss.
 
 :::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge 
 
 ## Challenge 2: Which piece of code would you use to subset the outliers? Which piece of code would you use to subset NA values? Use this code to change outliers to NA.
 
