@@ -9,6 +9,6 @@
 "episodes/CleanDataCollectedFromTheField.md" "cc0fcf7d831e4b3f839c2d6e77f71f0c" "site/built/CleanDataCollectedFromTheField.md" "2024-11-19"
 "instructors/instructor-notes.md" "cae72b6712578d74a49fea7513099f8c" "site/built/instructor-notes.md" "2024-11-19"
 "learners/reference.md" "1c7cc4e229304d9806a13f69ca1b8ba4" "site/built/reference.md" "2024-11-19"
-"learners/setup.md" "3ca9f9cb9b530cd2a2884d98bf36b1f3" "site/built/setup.md" "2024-11-19"
+"learners/setup.md" "df27f08a777b97c8423a105934c567c9" "site/built/setup.md" "2024-11-24"
 "profiles/learner-profiles.md" "60b93493cf1da06dfd63255d73854461" "site/built/learner-profiles.md" "2024-11-19"
 "renv/profiles/lesson-requirements/renv.lock" "779bcef0e256c2a11158c6595854657d" "site/built/renv.lock" "2024-11-19"

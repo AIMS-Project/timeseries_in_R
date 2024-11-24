@@ -209,6 +209,8 @@
       <div class="accordion-body">
         <ul><li><a href="#data-sets">Data Sets</a></li>
 <li><a href="#software-setup">Software Setup</a></li>
+<li><a href="#i-dont-think-we-need-anything-else-here-maybe-a-quick-note-about-differences-using-windows-mac-linux">i don’t think we need anything else here… maybe a quick note about
+differences using windows / mac / linux?</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -302,36 +304,54 @@ field site</li>
 </ul><!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
- --><section id="setup"><div class="prereqs">
-<p>To successfully participate in this course, we ask that participants
-meet the following prerequisites:</p>
+ --><section id="setup"><p>Timeseries in R</p>
+<p>The best way to learn how to program is by doing! In this lesson we
+will learn some of the basics for working with timeseries in R. We
+assume that you have some experience with programming in R already for
+this course.</p>
+<div class="prereqs">
+<p>To successfully participate in this course, we ask that Learners meet
+the following prerequisites:</p>
 <ul><li>Have an understanding of how file explorer works - creating folders,
 how to access and download files and moving them into the approriate
 folder (uses daily)</li>
 <li>Be able to use and download files from internet (uses daily)</li>
 <li>Be able to open, use basic functions, and edit in excel (uses weekly
-- monthly)</li>
+to monthly)</li>
 <li>Some very basic statistical knowledge (what is a mean, median,
 boxplot, distribution etc.) (any previous use)</li>
 <li>An overall understanding of why timeseries data is important (any
 previous use)</li>
-<li>Basic R: they have opened it, made projects, used basic functions
-(View, summary, mean, sd, etc.) and can load a dataset and install
-packages (any previous use)</li>
+<li>Have some familiarity with R: it is downloaded and up to date,
+Learners have made projects, used basic functions (View, summary, mean,
+sd, etc.) and can load a dataset and install packages (any previous
+use)</li>
 <li>R coding: Base R: understanding of aggregrate() and some experience
-with tidyverse (has used at least twice before)</li>
+with tidyverse (have used at least twice before)</li>
 </ul></div>
+<p>We will study changes in surfacewater and groundwater temperatures
+and stage (water level) over time. The datasets are uploaded as separate
+.csv files (comma-separated values), one for surfacewater data and one
+for groundwater data. Each row holds information for a single time point
+(in 15 minute intervals) and the columns represent the different
+variables we will study.</p>
+<p>[show first 5 rows of one dataset?]</p>
 <section><h2 class="section-heading" id="data-sets">Data Sets<a class="anchor" aria-label="anchor" href="#data-sets"></a></h2>
 <hr class="half-width"><!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
+[FIXME: place any data you want learners to use in `episodes/data` and then use
        a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
---><p>Download the <a href="https://example.com/FIXME" class="external-link">data zip file</a>
-and unzip it to your Desktop</p>
-<p>post them onto HydroShare??</p>
+       link to it, replacing the example.com link.]
+--><p>Make a new folder on your Desktop for this lesson: Timeseries_R
+Within your Timeseries_R folder, create an .Rproject for this workshop
+with the following folders: - data - data_processed - scripts Download
+the [ <a href="https://example.com/FIXME" class="external-link">data zip file</a> ] and move
+into the ‘data’ folder Unzip the .csv files to the ‘data’ folder. This
+may create another folder.</p>
+<p>We will: - load data into the R enviornment - clean and manipulate
+the data - calculate basic metrics - visulize timeseries data</p>
 </section><section><h2 class="section-heading" id="software-setup">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
-<hr class="half-width"><p>Install the following packages:</p>
-<ul><li>tidyverse (includes dyplor, ggplot2, and lubridate)</li>
+<hr class="half-width"><p>This course requires the following packages:</p>
+<ul><li>tidyverse (includes dyplr, ggplot2, and lubridate)</li>
 </ul><div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -339,9 +359,9 @@ and unzip it to your Desktop</p>
 <code class="sourceCode R"><span></span>
 <span><span class="fu">install.packages</span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span></code></pre>
 </div>
-<p>Create an .Rproject for this workshop with the following folders: -
-data - data_processed - scripts</p>
-<div id="details" class="callout discussion">
+</section><section><h2 class="section-heading" id="i-dont-think-we-need-anything-else-here-maybe-a-quick-note-about-differences-using-windows-mac-linux">i don’t think we need anything else here… maybe a quick note about
+differences using windows / mac / linux?<a class="anchor" aria-label="anchor" href="#i-dont-think-we-need-anything-else-here-maybe-a-quick-note-about-differences-using-windows-mac-linux"></a></h2>
+<hr class="half-width"><div id="details" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
@@ -454,8 +474,8 @@ any links that you are not going to use.
   "url": "https://timeseries_in_R.github.io/NA/index.html",
   "identifier": "https://timeseries_in_R.github.io/NA/index.html",
   "dateCreated": "2024-10-23",
-  "dateModified": "2024-11-19",
-  "datePublished": "2024-11-19"
+  "dateModified": "2024-11-24",
+  "datePublished": "2024-11-24"
 }
 
   </script><script>
