@@ -116,7 +116,6 @@ ggplot(data= konza_sw)+
  ylab("Surface Water Level (ft)")
 ```
 
-
 :::::::::::::::::::::::: solution 
  
 ```output
@@ -143,6 +142,7 @@ ggplot(data= konza_sw)+
 The plot!
 ```
 
+:::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -205,6 +205,8 @@ What worked and what didn't work? What did these methods show?
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Replace bad data values
 
 Now that we know there are numerous weird values, we want to remove those from our dataset by setting them to NA. For surface water level we will remove values below 0 but for temperatures, we will set a low threshold where we will assume the value is incorrect. 
 
