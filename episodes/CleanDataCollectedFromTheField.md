@@ -39,11 +39,12 @@ Make sure everyone knows what datasets we are using and to upload now.
 ## Check the data format
 
  Let's look at the data structure and make sure the data is in the correct format.
- 
+
+
 ```r
 str(konza_sw)
 
-#since my timestamp was imported in as a character I will change the timestamp to a datetime format. The data is in UTC time but will need to be changed to CT.
+#since my timestamp was imported in as a character I will change the timestamp to a datetime format. The data is in the UTC timezone but will need to be changed to the CT timezone.
 
 konza_sw$timestamp<- as.POSIXct(konza_sw$timestamp, format = "%m/%d/%Y %H:%M", tz='UTC')
 konza_gw$timestamp<- as.POSIXct(konza_gw$timestamp, format = "%m/%d/%Y %H:%M", tz='UTC')
@@ -121,12 +122,15 @@ head(konza_sw$timestamp)
 [5] "2021-06-09 11:00:00 CDT" "2021-06-09 11:10:00 CDT"
 ```
 
+::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::
 
 ## Plot the data
 
  Now, let's plot the surface water level data and the water temperature data and evaluate where there might be erroneous values
+
+::::::::::::::::::::::::::::::::: exercise
 
 ```r
 ggplot(data= konza_sw)+
@@ -142,9 +146,9 @@ ggplot(data= konza_sw)+
 
 
 ```
-
+::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::: exercise
 
 Let's plot the surface water temperature data.
  
@@ -193,8 +197,6 @@ ggplot(data= _____)+
 
 
 ![image](https://github.com/user-attachments/assets/45be7153-1148-4068-9c8d-957a253003fb)
-
-
 
 ```
 
@@ -280,6 +282,7 @@ d) # A tibble: 0 × 5
 # ℹ 5 variables: ...1 <dbl>, timestamp <dttm>, SW_Temp_PT_C <dbl>, yearMonth <chr>, SW_Level_ft <dbl>
 
 ```
+::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::: discussion
 What did these different methods show? What were the advantages and disadadvantages to each method?
 
@@ -351,6 +354,7 @@ ggplot(data= konza_gw)+
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 Now that we removed bad data values we can count how many NA values are in our dataset. This information may be useful if you need to report your results. 
+::::::::::::::::::::::::::::::::: exercise
 
 ```r
 #count NA values
@@ -386,8 +390,8 @@ sum(is.na(konza_gw$GW_Level_ft)) /nrow(konza_gw)
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
-Some of these NA values were short intervals that we can interpolate. Let's interpolate missing values in sections that have less than 12 consecutive NA values and save the interpolated data as a seperate column.
-
+Some of these NA values were short intervals that we can interpolate. Let's interpolate missing values in sections that have less than 12 consecutive NA values and save the interpolated data as a separate column.
+::::::::::::::::::::::::::::::::: exercise
 ```R
 #interpolate missing values
 konza_sw$SW_TEMP_PT_C_int <- na.approx(konza_sw$SW_Temp_PT_C, maxgap = 12, na.rm=FALSE)
