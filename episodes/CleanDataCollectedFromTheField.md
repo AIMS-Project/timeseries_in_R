@@ -27,18 +27,22 @@ In this episode, we will clean the field data and prepare the data for analysis 
 2. Interpolate missing data  
 3. Change data from UTC to CT
 
-We will use the files Konza_GW.csv and Konza_SW.csv imported in the introduction to the timeseries lesson and the same R packages. Please remember, we looked at a summary of the data and noticed some weird values. 
+We will use the files Konza_GW.csv and Konza_SW.csv imported in the introduction to the timeseries lesson and the same R packages. Please remember, that we looked at a summary of the data and noticed some weird values. 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
 Make sure everyone knows what datasets we are using and to upload now. 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::: exercise
+## Check the data format
 
  Let's look at the data structure and make sure the data is in the correct format.
+ 
 ```r
 str(konza_sw)
 ```
- ::::::::::::::::::::::::::::::::: output
+
+:::::::::::::::::::::::: solution
 
  ```output
  spc_tbl_ [99,105 × 5] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
@@ -58,20 +62,27 @@ str(konza_sw)
  - attr(*, "problems")=<externalptr> 
  ```
 
-:::::::::::::::::::::::::::::::::
-What timezone is our data in? Since this dataset is from Kansas, we want our data to plot in Central time.
+::::::::::::::::::::::::::::::::: exercise
+
+What timezone is our data in? Since this dataset is from Kansas, we want our data to be plotted in Central time.
 
 ```r
 head(konza_sw$timestamp)
 ```
-:::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::: solution
+
 ```output
 [1] "2021-06-09 15:10:00 UTC" "2021-06-09 15:20:00 UTC" "2021-06-09 15:30:00 UTC"
 [4] "2021-06-09 15:50:00 UTC" "2021-06-09 16:00:00 UTC" "2021-06-09 16:10:00 UTC"
 ```
-:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::: exercise
+
 Since the data is in UTC, we can change the data to CT 
+
 :::::::::::::::::::::::::::::::::
+
 ```r
 konza_sw$timestamp<- as.POSIXct(konza_sw$timestamp, format="%Y-%m-%d", tz='America/Chicago')
 konza_gw$timestamp<- as.POSIXct(konza_gw$timestamp, format="%Y-%m-%d", tz='America/Chicago')
@@ -79,24 +90,31 @@ konza_gw$timestamp<- as.POSIXct(konza_gw$timestamp, format="%Y-%m-%d", tz='Ameri
 head(konza_gw)
 head(konza_sw)
 ```
-:::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::: solution
+
 ```output
 [1] "2021-06-09 10:10:00 CDT" "2021-06-09 10:20:00 CDT" "2021-06-09 10:30:00 CDT"
 [4] "2021-06-09 10:50:00 CDT" "2021-06-09 11:00:00 CDT" "2021-06-09 11:10:00 CDT
 ```
 
 :::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
- Now, lets plot the surface water level data.
+## Plot the data
 
- :::::::::::::::::::::::::::::::::
+ Now, let's plot the surface water level data.
+
+ ::::::::::::::::::::::::::::::::: exercise
+ 
 ```r
 ggplot(data= konza_sw)+
  geom_line(aes(x=timestamp, y=SW_level_ft))+
  xlab("Time")+
  ylab("Surface Water Level (ft)")
 ```
-:::::::::::::::::::::::::::::::::
+
+
 :::::::::::::::::::::::: solution 
  
 ```output
@@ -107,22 +125,22 @@ The plot!
 
 Let's plot the surface water temperature data.
 
- :::::::::::::::::::::::::::::::::
+ ::::::::::::::::::::::::::::::::: exercise
+ 
 ```r
 ggplot(data= konza_sw)+
  geom_line(aes(x=timestamp, y=SW_Temp_PT_C))+
  xlab("Time")+
  ylab("Surface Water Level (ft)")
 ```
-:::::::::::::::::::::::::::::::::
+
 :::::::::::::::::::::::: solution 
- 
+
 ```output
 The plot!
 ```
+
 :::::::::::::::::::::::::::::::::
-
-
 ::::::::::::::::::::::::::::::::::::: challenge 
 
 ## Exercise 1: Plot the groundwater dataset and identify outliers.
@@ -157,7 +175,8 @@ Prompt for the learners to discuss.
 
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::
-Looks like we have outliers in our datasets. It is a good idea to zoom in to the outliers and see if there is something weird happening at that time. We can do this by subsetting our data. 
+
+Looks like we have outliers in our datasets. It is a good idea to zoom in on the outliers and see if there is something weird happening at that time. We can do this by subsetting our data. 
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -181,8 +200,11 @@ What worked and what didn't work? What did these methods show?
 ```
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
 Now that we know there are numerous weird values, we want to remove those from our dataset by setting them to NA. For surface water level we will remove values below 0 but for temperatures, we will set a low threshold where we will assume the value is incorrect. 
-:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::: exercise
+
 ```r
 konza_sw$SW_Level_ft[konza_sw$SW_Level_ft< 0]<- NA
 konza_sw$SW_Temp_PT_C[konza_sw$SW_Temp_PT_C< -100]<- NA
@@ -192,7 +214,8 @@ konza_sw$GW_Temp_PT_C[konza_sw$GW_Temp_PT_C< -100]<- NA
 
 ```
 
-
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Figures
 
