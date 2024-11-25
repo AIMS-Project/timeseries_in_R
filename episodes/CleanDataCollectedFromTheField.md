@@ -92,7 +92,6 @@ spc_tbl_ [67,804 × 5] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
  ```
 
 ::::::::::::::::::::::::
-::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::: exercise
 
 Since the data is in UTC, we can change the data to CT 
