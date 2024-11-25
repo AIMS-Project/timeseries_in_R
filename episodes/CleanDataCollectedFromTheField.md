@@ -282,14 +282,13 @@ d) # A tibble: 0 × 5
 # ℹ 5 variables: ...1 <dbl>, timestamp <dttm>, SW_Temp_PT_C <dbl>, yearMonth <chr>, SW_Level_ft <dbl>
 
 ```
-::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::
-:::::::::::::::::::::::::::::::: discussion
+::::::::::::::::::::::: discussion
 
 What did these different methods show? What were the advantages and disadvantages of each method?
 
-:::::::::::::::::::::::::::::::::
-:::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Replace bad data values
@@ -355,7 +354,7 @@ ggplot(data= konza_gw)+
 ```
 
 :::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 Now that we removed bad data values we can count how many NA values are in our dataset. This information may be useful if you need to report your results. 
 
@@ -455,6 +454,7 @@ sum(is.na(konza_gw$GW_Level_ft)) /nrow(konza_gw)
 ```
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::
 
 
 ## Figures
