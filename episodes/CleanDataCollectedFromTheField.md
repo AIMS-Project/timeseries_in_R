@@ -211,7 +211,6 @@ Prompt for the learners to discuss.
 
 Looks like we have outliers in our datasets. It is a good idea to zoom in on the outliers and see if there is something weird happening at that time. We can do this by subsetting our data. 
 
-:::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::: challenge 
 
 ## Exercise 2: Which piece of code would you use to subset the outliers? Which piece of code would you use to subset NA values? Use this code to change outliers to NA.
@@ -284,9 +283,9 @@ d) # A tibble: 0 × 5
 
 ```
 
-:::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
-:::::::::::::::::::::::::::::::: discussion
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::: discussion
 
 What did these different methods show? What were the advantages and disadvantages of each method?
 
@@ -355,7 +354,7 @@ ggplot(data= konza_gw)+
 ```
 
 :::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 Now that we removed bad data values we can count how many NA values are in our dataset. This information may be useful if you need to report your results. 
 
