@@ -122,11 +122,13 @@ head(konza_sw$timestamp)
 ```
 
 :::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::
 
 ## Plot the data
 
  Now, let's plot the surface water level data and the water temperature data and evaluate where there might be erroneous values
+
+::::::::::::::::::::::::::::::::: exercise
 
 ```r
 ggplot(data= konza_sw)+
@@ -144,7 +146,7 @@ ggplot(data= konza_sw)+
 ```
 
 :::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::: exercise
 
 Let's plot the surface water temperature data.
  
@@ -193,8 +195,6 @@ ggplot(data= _____)+
 
 
 ![image](https://github.com/user-attachments/assets/45be7153-1148-4068-9c8d-957a253003fb)
-
-
 
 ```
 
@@ -351,6 +351,7 @@ ggplot(data= konza_gw)+
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 Now that we removed bad data values we can count how many NA values are in our dataset. This information may be useful if you need to report your results. 
+::::::::::::::::::::::::::::::::: exercise
 
 ```r
 #count NA values
@@ -386,8 +387,8 @@ sum(is.na(konza_gw$GW_Level_ft)) /nrow(konza_gw)
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
-Some of these NA values were short intervals that we can interpolate. Let's interpolate missing values in sections that have less than 12 consecutive NA values and save the interpolated data as a seperate column.
-
+Some of these NA values were short intervals that we can interpolate. Let's interpolate missing values in sections that have less than 12 consecutive NA values and save the interpolated data as a separate column.
+::::::::::::::::::::::::::::::::: exercise
 ```R
 #interpolate missing values
 konza_sw$SW_TEMP_PT_C_int <- na.approx(konza_sw$SW_Temp_PT_C, maxgap = 12, na.rm=FALSE)
