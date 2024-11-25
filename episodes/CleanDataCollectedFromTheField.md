@@ -27,7 +27,7 @@ In this episode, we will clean the field data and prepare the data for analysis 
 2. Interpolate missing data  
 3. Change data from UTC to CT
 
-We will use the files Konza_GW.csv and Konza_SW.csv imported in the introduction to the timeseries lesson and the same R packages. Please remember, that we looked at a summary of the data and noticed some weird values. 
+We will use the files Konza_GW.csv and Konza_SW.csv imported in the introduction to the timeseries lesson and the same R packages. Please remember, that we looked at a summary of the data and noticed some weird values. As a reminder we will need packages ggplot2, tidyr, readr, lubridate, zoo, and dplyr.
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
@@ -42,42 +42,53 @@ Make sure everyone knows what datasets we are using and to upload now.
  
 ```r
 str(konza_sw)
+
+#since my timestamp was imported in as a character I will change the timestamp to a datetime format. The data is in UTC time but will need to be changed to CT.
+
+konza_sw$timestamp<- as.POSIXct(konza_sw$timestamp, format = "%m/%d/%Y %H:%M", tz='UTC')
+konza_gw$timestamp<- as.POSIXct(konza_gw$timestamp, format = "%m/%d/%Y %H:%M", tz='UTC')
+
+str(konza_sw)
 ```
 
 :::::::::::::::::::::::: solution
 
  ```output
- spc_tbl_ [99,105 × 5] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
- $ ...1        : num [1:99105] 1 2 3 4 5 6 7 8 9 10 ...
- $ timestamp   : POSIXct[1:99105], format: "2021-06-09 15:10:00" "2021-06-09 15:20:00" "2021-06-09 15:30:00" ...
- $ SW_Temp_PT_C: num [1:99105] -1e+05 -1e+05 -1e+05 -1e+05 -1e+05 ...
- $ yearMonth   : chr [1:99105] "2021-06" "2021-06" "2021-06" "2021-06" ...
- $ SW_Level_ft : num [1:99105] -1.00e+05 -1.00e+05 -1.00e+05 -1.00e+05 -1.00e+05 -1.00e+05 -1.00e+05 1.17 1.16 1.16 ...
+spc_tbl_ [67,804 × 5] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ ...1        : num [1:67804] 1 2 3 4 5 6 7 8 9 10 ...
+ $ timestamp   : chr [1:67804] "6/9/2021 15:10" "6/9/2021 15:20" "6/9/2021 15:30" "6/9/2021 15:50" ...
+ $ SW_Temp_PT_C: num [1:67804] -9999 -9999 -9999 -9999 -9999 ...
+ $ yearMonth   : chr [1:67804] "2021-06" "2021-06" "2021-06" "2021-06" ...
+ $ SW_Level_ft : num [1:67804] -9999 -9999 -9999 -9999 -9999 ...
  - attr(*, "spec")=
   .. cols(
   ..   ...1 = col_double(),
-  ..   timestamp = col_datetime(format = ""),
+  ..   timestamp = col_character(),
+  ..   SW_Temp_PT_C = col_double(),
+  ..   yearMonth = col_character(),
+  ..   SW_Level_ft = col_double()
+  .. )
+ - attr(*, "problems")=<externalptr>
+
+#after changing to a datetime format
+spc_tbl_ [67,804 × 5] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ ...1        : num [1:67804] 1 2 3 4 5 6 7 8 9 10 ...
+ $ timestamp   : POSIXct[1:67804], format: "2021-06-09 15:10:00" "2021-06-09 15:20:00" "2021-06-09 15:30:00" "2021-06-09 15:50:00" ...
+ $ SW_Temp_PT_C: num [1:67804] -9999 -9999 -9999 -9999 -9999 ...
+ $ yearMonth   : chr [1:67804] "2021-06" "2021-06" "2021-06" "2021-06" ...
+ $ SW_Level_ft : num [1:67804] -9999 -9999 -9999 -9999 -9999 ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   ...1 = col_double(),
+  ..   timestamp = col_character(),
   ..   SW_Temp_PT_C = col_double(),
   ..   yearMonth = col_character(),
   ..   SW_Level_ft = col_double()
   .. )
  - attr(*, "problems")=<externalptr> 
+
+
  ```
-::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::: exercise
-
-What timezone is our data in? Since this dataset is from Kansas, we want our data to be plotted in Central time.
-
-```r
-head(konza_sw$timestamp)
-```
-
-:::::::::::::::::::::::: solution
-
-```output
-[1] "2021-06-09 15:10:00 UTC" "2021-06-09 15:20:00 UTC" "2021-06-09 15:30:00 UTC"
-[4] "2021-06-09 15:50:00 UTC" "2021-06-09 16:00:00 UTC" "2021-06-09 16:10:00 UTC"
-```
 
 ::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::: exercise
@@ -86,18 +97,28 @@ Since the data is in UTC, we can change the data to CT
 
 
 ```r
-konza_sw$timestamp<- as.POSIXct(konza_sw$timestamp, format="%Y-%m-%d", tz='America/Chicago')
-konza_gw$timestamp<- as.POSIXct(konza_gw$timestamp, format="%Y-%m-%d", tz='America/Chicago')
+#confirm the data is in UTC
+head(konza_sw$timestamp)
+
+#Change the timezone to CT
+konza_sw$timestamp<- as.POSIXct(konza_sw$timestamp, format="%Y-%m-%d %H:%M", tz='America/Chicago')
+konza_gw$timestamp<- as.POSIXct(konza_gw$timestamp, format="%Y-%m-%d %H:%M", tz='America/Chicago')
 #check what timezone our data is in now
-head(konza_gw)
-head(konza_sw)
+head(konza_gw$timestamp)
+head(konza_sw$timestamp)
 ```
 
 :::::::::::::::::::::::: solution
 
 ```output
-[1] "2021-06-09 10:10:00 CDT" "2021-06-09 10:20:00 CDT" "2021-06-09 10:30:00 CDT"
-[4] "2021-06-09 10:50:00 CDT" "2021-06-09 11:00:00 CDT" "2021-06-09 11:10:00 CDT
+[1] "2021-06-09 15:10:00 UTC" "2021-06-09 15:20:00 UTC" "2021-06-09 15:30:00 UTC"
+[4] "2021-06-09 15:50:00 UTC" "2021-06-09 16:00:00 UTC" "2021-06-09 16:10:00 UTC"
+
+[1] "2021-06-09 10:10:00 CDT" "2021-06-09 10:20:00 CDT" "2021-06-09 10:30:00 CDT" "2021-06-09 10:50:00 CDT"
+[5] "2021-06-09 11:00:00 CDT" "2021-06-09 11:10:00 CDT"
+
+[1] "2021-06-09 10:10:00 CDT" "2021-06-09 10:20:00 CDT" "2021-06-09 10:30:00 CDT" "2021-06-09 10:50:00 CDT"
+[5] "2021-06-09 11:00:00 CDT" "2021-06-09 11:10:00 CDT"
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -105,13 +126,11 @@ head(konza_sw)
 
 ## Plot the data
 
- Now, let's plot the surface water level data.
+ Now, let's plot the surface water level data and the water temperature data and evaluate where there might be erroneous values
 
- ::::::::::::::::::::::::::::::::: exercise
- 
 ```r
 ggplot(data= konza_sw)+
- geom_line(aes(x=timestamp, y=SW_level_ft))+
+ geom_line(aes(x=timestamp, y=SW_Level_ft))+
  xlab("Time")+
  ylab("Surface Water Level (ft)")
 ```
@@ -119,27 +138,30 @@ ggplot(data= konza_sw)+
 :::::::::::::::::::::::: solution 
  
 ```output
-The plot!
+![image](https://github.com/user-attachments/assets/d06d1f67-9659-43f7-b3d3-9ec4c564108e)
+
+
 ```
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 Let's plot the surface water temperature data.
-
- ::::::::::::::::::::::::::::::::: exercise
  
 ```r
 ggplot(data= konza_sw)+
  geom_line(aes(x=timestamp, y=SW_Temp_PT_C))+
  xlab("Time")+
- ylab("Surface Water Level (ft)")
+ ylab("Temperature (°C)")
 ```
 
 :::::::::::::::::::::::: solution 
 
 ```output
-The plot!
+![image](https://github.com/user-attachments/assets/a6a2c90b-4a7b-4049-b78c-e0f4d895ec8c)
+
+
+
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -152,12 +174,12 @@ Fill in the blank: Using code from plotting above to recreate the water level an
 
 ```r
 ggplot(data= _____)+
- geom_line(aes(x=xxxx, y=yyyy))+
+ geom_line(aes(x=____, y=____))+
  xlab("Time")+
  ylab("Temperature (degrees symbol C)")
 
 ggplot(data= _____)+
- geom_line(aes(x=xxxx, y=yyyy))+
+ geom_line(aes(x=____, y=_____))+
  xlab("Time")+
  ylab("Water Level (ft)")
 ```
@@ -167,7 +189,13 @@ ggplot(data= _____)+
 ## Output
  
 ```output
-The plots!
+![image](https://github.com/user-attachments/assets/78c0cc1f-f63d-4339-b349-adfb6ebed17b)
+
+
+![image](https://github.com/user-attachments/assets/45be7153-1148-4068-9c8d-957a253003fb)
+
+
+
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -177,7 +205,6 @@ The plots!
 
 Prompt for the learners to discuss.
 
-:::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::
 
 Looks like we have outliers in our datasets. It is a good idea to zoom in on the outliers and see if there is something weird happening at that time. We can do this by subsetting our data. 
@@ -189,10 +216,10 @@ Looks like we have outliers in our datasets. It is a good idea to zoom in on the
 Test the following code using the surface water dataset followed by the groundwater dataset. Don't forget to change the dataframe when evaluating the groundwater dataset:
 
 ```r
-a) konza_sw[c(67742:67830),]
-b) konza_swe[konza_sw$datetime > "2022-09-23" & konza_sw$datetime< "2022-09-25",]
-c) the tydyr method I don't know (subset?)
-d) konza_sw$SW_level_ft[is.na(konza_sw$SW_level_ft),]
+a) konza_sw[c(67780:67830),]
+b) konza_sw[konza_sw$timestamp > "2022-09-23 11:50" & konza_sw$timestamp< "2022-09-25 12:00",]
+c) subset(konza_sw, SW_Level_ft < 0 )
+d) konza_sw[is.na(konza_sw$SW_Level_ft),]
 ```
 
 :::::::::::::::::::::::: solution 
@@ -200,8 +227,61 @@ d) konza_sw$SW_level_ft[is.na(konza_sw$SW_level_ft),]
 ## Output
 
 ```output
-What worked and what didn't work? What did these methods show?
+a) # A tibble: 51 × 5
+    ...1 timestamp           SW_Temp_PT_C yearMonth SW_Level_ft
+   <dbl> <dttm>                     <dbl> <chr>           <dbl>
+ 1 67780 2022-09-23 14:50:00         19.6 2022-09          0.04
+ 2 67781 2022-09-23 15:00:00         19.9 2022-09          0.04
+ 3 67782 2022-09-23 15:10:00         20.4 2022-09      -9999   
+ 4 67783 2022-09-23 15:20:00      -9999   2022-09      -9999   
+ 5 67784 2022-09-23 15:30:00      -9999   2022-09      -9999   
+ 6 67785 2022-09-23 15:40:00      -9999   2022-09      -9999   
+ 7 67786 2022-09-23 15:50:00      -9999   2022-09      -9999   
+ 8 67787 2022-09-23 16:00:00      -9999   2022-09      -9999   
+ 9 67788 2022-09-23 16:10:00      -9999   2022-09      -9999   
+10 67789 2022-09-23 16:20:00      -9999   2022-09      -9999   
+# ℹ 41 more rows
+# ℹ Use `print(n = ...)` to see more rows
+
+b) # A tibble: 30 × 5
+    ...1 timestamp           SW_Temp_PT_C yearMonth SW_Level_ft
+   <dbl> <dttm>                     <dbl> <chr>           <dbl>
+ 1 67775 2022-09-23 14:00:00         18.3 2022-09          0.04
+ 2 67776 2022-09-23 14:10:00         18.6 2022-09          0.04
+ 3 67777 2022-09-23 14:20:00         18.9 2022-09          0.04
+ 4 67778 2022-09-23 14:30:00         19.1 2022-09      -9999   
+ 5 67779 2022-09-23 14:40:00         19.4 2022-09          0.03
+ 6 67780 2022-09-23 14:50:00         19.6 2022-09          0.04
+ 7 67781 2022-09-23 15:00:00         19.9 2022-09          0.04
+ 8 67782 2022-09-23 15:10:00         20.4 2022-09      -9999   
+ 9 67783 2022-09-23 15:20:00      -9999   2022-09      -9999   
+10 67784 2022-09-23 15:30:00      -9999   2022-09      -9999   
+# ℹ 20 more rows
+# ℹ Use `print(n = ...)` to see more rows
+
+c) # A tibble: 22,000 × 5
+    ...1 timestamp           SW_Temp_PT_C yearMonth SW_Level_ft
+   <dbl> <dttm>                     <dbl> <chr>           <dbl>
+ 1     1 2021-06-09 10:10:00      -9999   2021-06         -9999
+ 2     2 2021-06-09 10:20:00      -9999   2021-06         -9999
+ 3     3 2021-06-09 10:30:00      -9999   2021-06         -9999
+ 4     4 2021-06-09 10:50:00      -9999   2021-06         -9999
+ 5     5 2021-06-09 11:00:00      -9999   2021-06         -9999
+ 6     6 2021-06-09 11:10:00      -9999   2021-06         -9999
+ 7     7 2021-06-09 11:20:00      -9999   2021-06         -9999
+ 8   399 2021-06-12 06:20:00         15.8 2021-06         -9999
+ 9   442 2021-06-12 13:30:00         18.4 2021-06         -9999
+10   443 2021-06-12 13:40:00         18.5 2021-06         -9999
+# ℹ 21,990 more rows
+# ℹ Use `print(n = ...)` to see more rows
+
+
+d) # A tibble: 0 × 5
+# ℹ 5 variables: ...1 <dbl>, timestamp <dttm>, SW_Temp_PT_C <dbl>, yearMonth <chr>, SW_Level_ft <dbl>
+
 ```
+:::::::::::::::::::::::::::::::: discussion
+What did these different methods show? What were the advantages and disadadvantages to each method?
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -219,10 +299,152 @@ konza_sw$SW_Temp_PT_C[konza_sw$SW_Temp_PT_C< -100]<- NA
 konza_sw$GW_Level_ft[konza_sw$GW_Level_ft< 0]<- NA
 konza_sw$GW_Temp_PT_C[konza_sw$GW_Temp_PT_C< -100]<- NA
 
+#subset and plot to see if our changes worked
+subset(konza_sw, SW_Level_ft < 0 )
+
+#plot each dataset and see if it looks ok
+ggplot(data= konza_sw)+
+  geom_line(aes(x=timestamp, y=SW_Level_ft))+
+  xlab("Time")+
+  ylab("Surface Water Level (ft)")
+
+ggplot(data= konza_sw)+
+  geom_line(aes(x=timestamp, y=SW_Temp_PT_C))+
+  xlab("Time")+
+  ylab("Temperature (°C)")
+
+
+ggplot(data= konza_gw)+
+  geom_line(aes(x=timestamp, y=GW_Level_ft))+
+  xlab("Time")+
+  ylab("Surface Water Level (ft)")
+
+
+ggplot(data= konza_gw)+
+  geom_line(aes(x=timestamp, y=GW_Temp_PT_C))+
+  xlab("Time")+
+  ylab("Temperature (°C)")
+
+```
+
+:::::::::::::::::::::::: solution 
+
+```output
+
+# A tibble: 0 × 5
+# ℹ 5 variables: ...1 <dbl>, timestamp <dttm>, SW_Temp_PT_C <dbl>, yearMonth <chr>, SW_Level_ft <dbl>
+
+![image](https://github.com/user-attachments/assets/33fb236a-af41-4137-941f-578181bfd3e9)
+
+
+![image](https://github.com/user-attachments/assets/be28ffb1-61fa-4da8-a92d-8a0cc46ddbed)
+
+
+![image](https://github.com/user-attachments/assets/4b0155e6-5eb5-43ec-8f7c-14930ab414a9)
+
+
+![image](https://github.com/user-attachments/assets/1f2c7747-a60a-4e01-9f5d-b7de5f6dfb06)
+
+
 ```
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
+Now that we removed bad data values we can count how many NA values are in our dataset. This information may be useful if you need to report your results. 
+
+```r
+#count NA values
+sum(is.na(konza_sw$SW_Temp_PT_C))
+sum(is.na(konza_sw$SW_Level_ft))
+sum(is.na(konza_gw$GW_Temp_PT_C))
+sum(is.na(konza_gw$GW_Level_ft))
+
+#divide the number of NA values by the number of rows to see what fraction of our data is NA
+sum(is.na(konza_sw$SW_Temp_PT_C)) / nrow(konza_sw)
+sum(is.na(konza_sw$SW_Level_ft)) / nrow(konza_sw)
+sum(is.na(konza_gw$GW_Temp_PT_C)) / nrow(konza_gw)
+sum(is.na(konza_gw$GW_Level_ft)) /nrow(konza_gw)
+
+
+```
+
+:::::::::::::::::::::::: solution 
+
+```output
+[1] 29
+[1] 22000
+[1] 30
+[1] 1884
+
+#divide the number of NA values by the number of rows to see what fraction of our data is NA
+[1] 0.0004277034
+[1] 0.3244646
+[1] 0.0004424518
+[1] 0.02778597
+
+```
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+Some of these NA values were short intervals that we can interpolate. Let's interpolate missing values in sections that have less than 12 consecutive NA values and save the interpolated data as a seperate column.
+
+```R
+#interpolate missing values
+konza_sw$SW_TEMP_PT_C_int <- na.approx(konza_sw$SW_Temp_PT_C, maxgap = 12, na.rm=FALSE)
+konza_sw$SW_Level_ft_int <- na.approx(konza_sw$SW_Level_ft , maxgap = 12, na.rm=FALSE)
+konza_gw$GW_TEMP_PT_C_int <- na.approx(konza_gw$GW_Temp_PT_C, maxgap = 12, na.rm=FALSE)
+konza_gw$GW_Level_ft_int <- na.approx(konza_gw$GW_Level_ft, maxgap = 12, na.rm=FALSE)
+
+```
+
+:::::::::::::::::::::::: solution 
+
+```output
+
+```
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::: challenge 
+
+## Exercise 3: Find the new fraction of NA values in the datasets
+
+Adjust the following code for each column and dataset to find the new fraction of NA values: 
+
+```r
+#SW temperature 
+sum(is.na(konza_sw$SW_TEMP_PT_C_int)) / nrow(konza_sw)
+
+#SW level
+
+#GW temperature
+
+#GW level
+
+
+```
+
+:::::::::::::::::::::::: solution 
+
+## Output
+
+```output
+sum(is.na(konza_sw$SW_TEMP_PT_C_int)) / nrow(konza_sw)
+[1] 0.0004277034
+
+sum(is.na(konza_sw$SW_Level_ft_int)) / nrow(konza_sw)
+[1] 0.3133296
+
+sum(is.na(konza_gw$GW_TEMP_PT_C_int)) / nrow(konza_gw)
+[1] 0.004277034
+
+sum(is.na(konza_gw$GW_Level_ft)) /nrow(konza_gw)
+[1] 0.02778597
+
+```
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 ## Figures
 
@@ -236,6 +458,8 @@ pie(
   border = FALSE
 )
 ```
+
+
 
 Or you can use standard markdown for static figures with the following syntax:
 
