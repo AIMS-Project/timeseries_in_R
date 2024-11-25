@@ -142,7 +142,7 @@ ggplot(data= konza_sw)+
 :::::::::::::::::::::::: solution 
  
 ```output
-![image](https://github.com/user-attachments/assets/d06d1f67-9659-43f7-b3d3-9ec4c564108e)
+![Raw surface water level (ft)](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_level_raw.png?raw=true)
 
 
 ```
@@ -162,7 +162,7 @@ ggplot(data= konza_sw)+
 :::::::::::::::::::::::: solution 
 
 ```output
-![image](https://github.com/user-attachments/assets/a6a2c90b-4a7b-4049-b78c-e0f4d895ec8c)
+![Raw surface water temperature](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_temp_raw.png)
 
 
 
@@ -193,10 +193,10 @@ ggplot(data= _____)+
 ## Output
  
 ```output
-![image](https://github.com/user-attachments/assets/78c0cc1f-f63d-4339-b349-adfb6ebed17b)
+![Raw groundwater level](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/gw_level_raw.png)
 
 
-![image](https://github.com/user-attachments/assets/45be7153-1148-4068-9c8d-957a253003fb)
+![Raw groundwater temperature](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/gw_temp_raw.png)
 
 ```
 
@@ -282,11 +282,13 @@ d) # A tibble: 0 × 5
 # ℹ 5 variables: ...1 <dbl>, timestamp <dttm>, SW_Temp_PT_C <dbl>, yearMonth <chr>, SW_Level_ft <dbl>
 
 ```
-::::::::::::::::::::::::::::::::
-:::::::::::::::::::::::::::::::: discussion
-What did these different methods show? What were the advantages and disadadvantages to each method?
 
+::::::::::::::::::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::
+::::::::::::::::::::::: discussion
+
+What did these different methods show? What were the advantages and disadvantages of each method?
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Replace bad data values
@@ -337,23 +339,25 @@ ggplot(data= konza_gw)+
 # A tibble: 0 × 5
 # ℹ 5 variables: ...1 <dbl>, timestamp <dttm>, SW_Temp_PT_C <dbl>, yearMonth <chr>, SW_Level_ft <dbl>
 
-![image](https://github.com/user-attachments/assets/33fb236a-af41-4137-941f-578181bfd3e9)
+![Surface water level](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_level_edit.png)
 
 
-![image](https://github.com/user-attachments/assets/be28ffb1-61fa-4da8-a92d-8a0cc46ddbed)
+![Surface water temperature](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_temp_edit.png)
 
 
-![image](https://github.com/user-attachments/assets/4b0155e6-5eb5-43ec-8f7c-14930ab414a9)
+![Groundwater level](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/gw_level_edit.png)
 
 
-![image](https://github.com/user-attachments/assets/1f2c7747-a60a-4e01-9f5d-b7de5f6dfb06)
+![Groundwater Temperature](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/gw_temp_edit.png)
 
 
 ```
 
 :::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
+
+
 Now that we removed bad data values we can count how many NA values are in our dataset. This information may be useful if you need to report your results. 
+
 ::::::::::::::::::::::::::::::::: exercise
 
 ```r
@@ -390,7 +394,9 @@ sum(is.na(konza_gw$GW_Level_ft)) /nrow(konza_gw)
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
 Some of these NA values were short intervals that we can interpolate. Let's interpolate missing values in sections that have less than 12 consecutive NA values and save the interpolated data as a separate column.
+
 ::::::::::::::::::::::::::::::::: exercise
 ```R
 #interpolate missing values
@@ -448,6 +454,7 @@ sum(is.na(konza_gw$GW_Level_ft)) /nrow(konza_gw)
 ```
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::
 
 
 ## Figures
