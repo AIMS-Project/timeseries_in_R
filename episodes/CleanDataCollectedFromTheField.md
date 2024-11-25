@@ -6,8 +6,8 @@ exercises: 10
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How can you clean time series datasets collected from the field? 
-
+- How can you clean time series datasets collected from the field?
+  
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
@@ -16,7 +16,7 @@ exercises: 10
 - Identify outliers and interpolate missing data
 - Filter outliers and missing data
 - Create a new dataframe
-
+  
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Introduction
@@ -28,12 +28,14 @@ In this episode, we will clean the field data and prepare the data for analysis 
 3. Change data from UTC to CT
 
 We will use the files Konza_GW.csv and Konza_SW.csv imported in the introduction to the timeseries lesson and the same R packages. Please remember, that we looked at a summary of the data and noticed some weird values. 
+
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
 Make sure everyone knows what datasets we are using and to upload now. 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::: exercise
+
 ## Check the data format
 
  Let's look at the data structure and make sure the data is in the correct format.
@@ -61,7 +63,7 @@ str(konza_sw)
   .. )
  - attr(*, "problems")=<externalptr> 
  ```
-
+::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::: exercise
 
 What timezone is our data in? Since this dataset is from Kansas, we want our data to be plotted in Central time.
@@ -77,11 +79,11 @@ head(konza_sw$timestamp)
 [4] "2021-06-09 15:50:00 UTC" "2021-06-09 16:00:00 UTC" "2021-06-09 16:10:00 UTC"
 ```
 
+::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::: exercise
 
 Since the data is in UTC, we can change the data to CT 
 
-:::::::::::::::::::::::::::::::::
 
 ```r
 konza_sw$timestamp<- as.POSIXct(konza_sw$timestamp, format="%Y-%m-%d", tz='America/Chicago')
@@ -120,6 +122,7 @@ ggplot(data= konza_sw)+
 ```output
 The plot!
 ```
+
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -166,6 +169,7 @@ ggplot(data= _____)+
 ```output
 The plots!
 ```
+
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -198,6 +202,7 @@ d) konza_sw$SW_level_ft[is.na(konza_sw$SW_level_ft),]
 ```output
 What worked and what didn't work? What did these methods show?
 ```
+
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
