@@ -285,8 +285,10 @@ d) # A tibble: 0 × 5
 ::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::: discussion
+
 What did these different methods show? What were the advantages and disadvantages of each method?
 
+:::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -354,7 +356,9 @@ ggplot(data= konza_gw)+
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
 Now that we removed bad data values we can count how many NA values are in our dataset. This information may be useful if you need to report your results. 
+
 ::::::::::::::::::::::::::::::::: exercise
 
 ```r
@@ -391,7 +395,9 @@ sum(is.na(konza_gw$GW_Level_ft)) /nrow(konza_gw)
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
 Some of these NA values were short intervals that we can interpolate. Let's interpolate missing values in sections that have less than 12 consecutive NA values and save the interpolated data as a separate column.
+
 ::::::::::::::::::::::::::::::::: exercise
 ```R
 #interpolate missing values
