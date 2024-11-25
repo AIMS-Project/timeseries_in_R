@@ -39,11 +39,12 @@ Make sure everyone knows what datasets we are using and to upload now.
 ## Check the data format
 
  Let's look at the data structure and make sure the data is in the correct format.
- 
+
+
 ```r
 str(konza_sw)
 
-#since my timestamp was imported in as a character I will change the timestamp to a datetime format. The data is in UTC time but will need to be changed to CT.
+#since my timestamp was imported in as a character I will change the timestamp to a datetime format. The data is in the UTC timezone but will need to be changed to the CT timezone.
 
 konza_sw$timestamp<- as.POSIXct(konza_sw$timestamp, format = "%m/%d/%Y %H:%M", tz='UTC')
 konza_gw$timestamp<- as.POSIXct(konza_gw$timestamp, format = "%m/%d/%Y %H:%M", tz='UTC')
@@ -121,6 +122,7 @@ head(konza_sw$timestamp)
 [5] "2021-06-09 11:00:00 CDT" "2021-06-09 11:10:00 CDT"
 ```
 
+::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::
 
@@ -144,7 +146,7 @@ ggplot(data= konza_sw)+
 
 
 ```
-
+::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::: exercise
 
@@ -280,6 +282,7 @@ d) # A tibble: 0 × 5
 # ℹ 5 variables: ...1 <dbl>, timestamp <dttm>, SW_Temp_PT_C <dbl>, yearMonth <chr>, SW_Level_ft <dbl>
 
 ```
+::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::: discussion
 What did these different methods show? What were the advantages and disadadvantages to each method?
 
