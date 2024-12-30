@@ -5,17 +5,21 @@ exercises: XX
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
+
 - What can you expect from this training?
 - Where are these data coming from?
 - What is a timeseries and why are they important?
+  
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
+
 - Create an R project with folders
 - Get familiar with datasets
 - Define common terms used to describe timeseries
 - Import csv data into R
 - Understand differences between base R and tidyverse approaches
+  
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## About this Lesson
@@ -28,11 +32,13 @@ data, 3. define common terms used in this lesson, 4. import .csv files, and 5. i
 between coding in base R and using tidyverse.
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+
 It might be a good idea to check with Learners to see if they were able to get the 
 R project created and the data downloaded to assess if running through the 'Getting Started' section 
 is needed.
 
 Use sticky notes / zoom reactions to check for completedness
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Getting Started
@@ -42,11 +48,17 @@ which will help tell our computers where the data exist. The 'Projects' interfac
 working directory for you and sets the working directory to the project. 
 
 ::::::::::::::::::::::::::::::::::::: challenge 
+
 Using file explorer, create a new folder and R project for this lesson. 
+
 ::::::::::::::::::::::::::::::::::::: discussion 
+
 What folders would be good to include?
+
 :::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::: solution 
+
 ## Creating a new project:
 - under the 'File" menu in RStudio, click on 'New Project', choose 'New Directory', then 'New Project'
 - enter a name for this new directory and where it will be located. This creates your working directory (example: C:/XXX/User/Desktop/Timeseries_R)
@@ -57,7 +69,9 @@ Typically, we encourage to make files for:
 1. data
 2. data_processed
 3. scripts
+   
 :::::::::::::::::::::::::::::::::
+
 :::::::::::::::::::::::::::::::::
 
 ## Creating a timeseries
@@ -90,35 +104,46 @@ timeseries <- ts(vector, start = c(2010, 1), end = c(2015, 12), frequency = 12)
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge 
+
 ## Exercise #1
 
 Make a basic plot of this timeseries.
+
 :::::::::::::::::::::::: solution 
+
 ```r
 plot(timeseries)
 ``
+
 :::::::::::::::::::::::::::::::::::::
+
 :::::::::::::::::::::::::::::::::
 
 These plots will look differently for everyone, as we took a random sample to create our vector.
 
-::::::::::::::::::::::::::::::::::::: challenge 
+::::::::::::::::::::::::::::::::::::: challenge
+
 ## Exercise #2
 
 Make a timeseries that has annual samples from March 1992 to March 2024 and plot it.
-:::::::::::::::::::::::: solution 
+
+:::::::::::::::::::::::: solution
+
 ```r
 annual_ts <- ts(vector, start = c(1992, 3), end = c(2024, 3), frequency = 1)
 
 plot(annual_ts)
 ```
+
 :::::::::::::::::::::::::::::::::::::
+
 :::::::::::::::::::::::::::::::::::::
 
 Another helpful function for time series is 'stl()'. This function will decompose the timeseries 
 dataset to identify patterns.
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
+
 Decomposition is a process that breaks down a time series dataset into different componsents to 
 identify patterns and variations. This helps with predicting (or forecasting) future data points, 
 finding trends, and identifying anomalies in the data (outliers).
@@ -139,6 +164,7 @@ depend on a time at which the series is observed (there is no temporal trend in 
 Some other terms to be aware of when working with time series:
 Missing values: Instances where a value for a specific variable is not recorded or available for a 
 particular observation in a dataset (often recorded as NA or N/A or blank cells)
+
 :::::::::::::::::::::::::::::::::::::
 
 To look for seasonal decomposition, we can use
@@ -168,8 +194,10 @@ drivers (e.g., microbes, biogeochemistry) to control water quality in non-perenn
 an [overview of the AIMS project](https://youtu.be/HDKIBNEnwdM). 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
+
 For our purposes, Non-perennial streams are rivers and streams that cease to flow at some point in time 
 or space and are also commonly referred to as intermittent rivers and ephemeral streams (IRES). 
+
 :::::::::::::::::::::::::::::::::::::
 
 This dataset was collected from an [EXO2 Multiparameter Sonde](https://www.ysi.com/exo2) that can measure 
@@ -178,81 +206,108 @@ mutliple water chemistry parameters, including: conductivity, temperature, disso
 One of these sensors was deployed in King's Creek and the Konza Biological Prairie.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
+
 ## Exercise #3
 Can you find the Konza Prairie Biological Station on Google Maps? 
 What state did this project take place in? What is the closest city?
+
 :::::::::::::::::::::::: solution 
+
 This project took place in Kansas, USA. 
 The exact coordinates for this site are: 39°05'32.2"N 96°35'13.9"W
 
 The closest major city is Manhattan, KS. 
+
 ::::::::::::::::::::::::
+
 :::::::::::::::::::::::::::::::::::::
 
 In this lesson, we will explore the data collected by the sensor at the outlet of the King's Creek 
 watershed. We will compare groundwater data to surfacewater data to see when the stream dries.
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
+
 A watershed is an area of land that separates water flowing to different rivers, basins, lakes, or the sea.
 Groundwater is freshwater that is stored in and orginiates from the ground between soil and rocks.
 Surfacewater is freshwater found on top fo land in a lake, river, stream, or pond. 
+
 :::::::::::::::::::::::::::::::::::::
 
 Before we load the .csv files into R, try opening them using Excel. Since this will be your first 
 time using the data, it is always a good idea to get familiar with the dataset.
 
 :::::::::::::::::::::::: discussion 
+
 Breakout rooms / At your table, answer the following questions:
 
 Can you see how many time points there are?
  - When was the first time point?
  - When was the last time point?
+
 What is the time interval of data collection?
+
 Do you have guesses as to what the columns mean?
+
 :::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::: instructor
+
 This data was collected between XXXX 2021 and XXXX 2024
 The EXO2 collects data every 15 minutes.
 Column names: XXXXX 
+
 ::::::::::::::::::::::::
 
 Now that we have a better understanding of the data that we will be working with, 
 let's get started working in R!
 
 ::::::::::::::::::::::::::::::::::::: challenge
+
 ## Exercise #4
 How do you upload a .csv file into R?
+
 :::::::::::::::::::::::: solution
+
 ```r
 konza <- read.csv("C://[location of your data]", header = TRUE)
 ```
+
 ::::::::::::::::::::::::
+
 :::::::::::::::::::::::::::::::::::::
 
 Once your data is uploaded to R, it can be a lot easier to understand the data.
 
 To get a data summary, use
+
 ```r
 summary(konza)
 ```
+
 Which will tell you the min, 1st quartile, median, mean, 3rd quartile, and maximum values 
 for numeric columns in the dataset.
 
 Many of these numbers will be used to make boxplots of the data:
 
 :::::::::::::::::::::::: glossary 
+
 Boxplot: A method for demonstrating the spread and skewness of the data. Uses min, 
 1st quartile, median, 3rd quartile, and maximum values
+
 Quartiles: The Q1 (1st Qu.) is the 25% of the data below that point, Q2 is the end of the 
 second quartile and 50th percentile (median), Q3 is the third quartile and is the 75th percentile 
 and upper 25% of the data (3rd. Qu.)
+
 Median: The middle number in an organized list of numbers
+
 Minimum: The lowest number in a list of numbers
+
 Maximum: The highest number in a list of numbers
 
 Another common statistic used is the mean:
+
 Mean: The average of a set of data
+
 ::::::::::::::::::::::::
 
 Now that we better understand the data, let's get started on working on cleaning and manipulating the data!
