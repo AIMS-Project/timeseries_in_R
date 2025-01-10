@@ -91,19 +91,19 @@ vector <- sample(x = 1:20, size = 50, replace = TRUE)
 # size is the length of the vector (in this example, 50 characters long)
 # replace = TRUE allows values to be repeated in the vector
 
-```
-
-To make this vector into a time series, use 'ts()'
-
-```r
+# To make this vector into a time series, use 'ts()'
 
 timeseries <- ts(vector, start = c(2010, 1), end = c(2015, 12), frequency = 12)
 
-# start is the time of first observation (in this example, January 2010)
-# end is the time of final observation (in this example, December 2015)
-# frequency is the number of observations per unit time (1 = annual, 4 = quartly, 12 = monthly)
-
 ```
+
+::::::::::::::::::::::::::::::::::::: solution
+
+start is the time of first observation (in this example, January 2010)
+end is the time of final observation (in this example, December 2015)
+frequency is the number of observations per unit time (1 = annual, 4 = quartly, 12 = monthly)
+
+:::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -115,7 +115,7 @@ Make a basic plot of this timeseries.
 
 ```r
 plot(timeseries)
-``
+```
 
 :::::::::::::::::::::::::::::::::::::
 
