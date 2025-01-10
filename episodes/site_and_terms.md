@@ -1,5 +1,5 @@
 ---
-title: "Define common timeseries terms and familiarize yourself with the field site"
+title: "Define terms and familiarize yourself with the data"
 teaching: XX
 exercises: XX
 ---
