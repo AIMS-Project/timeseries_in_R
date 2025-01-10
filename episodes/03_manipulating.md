@@ -82,8 +82,7 @@ the version of the files that you need to continue with your work!
 ````
 
 ::::::::::::::::::::::::
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::
+
 
 ## Upload the cleaned dataframes
 
