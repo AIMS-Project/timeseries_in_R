@@ -118,11 +118,11 @@
   Timeseries in R
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 23%" class="percentage">
-    23%
+<aside class="col-md-12 lesson-progress"><div style="width: 17%" class="percentage">
+    17%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 23%" aria-valuenow="23" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 17%" aria-valuenow="17" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -226,8 +226,8 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#about-this-lesson">About this Lesson</a></li>
-<li><a href="#figures">Figures</a></li>
-<li><a href="#math">Math</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#creating-a-timeseries">Creating a timeseries</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -301,13 +301,13 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Define common timeseries terms and familiarize yourself with the field site</h1>
-        <p>Last updated on 2024-11-19 |
+        <p>Last updated on 2025-01-10 |
 
         <a href="https://aims-project.github.io/timeseries_in_R/edit/main/episodes/site_and_terms.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
 
 
-        <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> NA minutes</p>
+        <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 30 minutes</p>
 
         <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -323,8 +323,8 @@
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul><li>What can you expect from this training?</li>
-<li>What is a timeseries and why are they important?</li>
 <li>Where are these data coming from?</li>
+<li>What is a timeseries and why are they important?</li>
 </ul></div>
 </div>
 </div>
@@ -348,8 +348,8 @@ data. For this course, we wil create an R project and make sure we have
 access to the datasets. During this lesson we will familiarize ourselves
 with the data. This data was collected as a part of an NSF funded
 project, the Aquatic Intermittency effect of Microbiomes in Streams
-(AIMS; OSF OIA 2019603).</p>
-<p>In this lesson we will review how to 1. make a project in R, 2.
+(AIMS; OSF OIA 2019603).<br>
+In this lesson we will review how to 1. make a project in R, 2.
 familiarize ourselves with the data, 3. define common terms used in this
 lesson, 4. import .csv files, and 5. introuduce differences between
 coding in base R and using tidyverse.</p>
@@ -360,47 +360,96 @@ coding in base R and using tidyverse.</p>
 </button>
 <div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
-<p>Inline instructor notes can help inform instructors of timing
-challenges associated with the lessons. They appear in the “Instructor
-View”</p>
+<p>It might be a good idea to check with Learners to see if they were
+able to get the R project created and the data downloaded to assess if
+running through the ‘Getting Started’ section is needed.</p>
+<p>Use sticky notes / zoom reactions to check for completedness</p>
 </div>
 </div>
 </div>
 </div>
-<p>To get familiar with the data, let’s first make sure we remember how
-to create an R Project!</p>
-<div id="challenge1" class="callout challenge">
+</section><section><h2 class="section-heading" id="getting-started">Getting Started<a class="anchor" aria-label="anchor" href="#getting-started"></a></h2>
+<hr class="half-width"><p>Before we get familiar with the data, let’s first make sure we
+remember how to create an R Project, which will help tell our computers
+where the data exist. The ‘Projects’ interface in RStudio creates a
+working directory for you and sets the working directory to the
+project.</p>
+<div id="discussion1" class="callout discussion">
 <div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
+<i class="callout-icon" data-feather="message-circle"></i>
 </div>
 <div class="callout-inner">
 <h3 class="callout-title">Challenge</h3>
 <div class="callout-content">
-<p>Using file explorer, create a new file and R project for this
+<p>Using file explorer, create a new folder and R project for this
 lesson.</p>
-<div id="discussion1" class="callout discussion">
+</div>
+</div>
+</div>
+<div id="discussion2" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
 <div class="callout-inner">
 <h3 class="callout-title">Discussion</h3>
 <div class="callout-content">
-<p>What files would be good to include?</p>
-</div>
-</div>
-</div>
+<p>What folders would be good to include?</p>
 </div>
 </div>
 </div>
 <div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+  <h4 class="accordion-header" id="headingSolution1"> Creating a new project: </h4>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
+<ul><li>under the ‘File” menu in RStudio, click on ’New Project’, choose
+‘New Directory’, then ‘New Project’</li>
+<li>enter a name for this new directory and where it will be located.
+This creates your working directory (example:
+C:/XXX/User/Desktop/Timeseries_R)</li>
+<li>click ‘Create Project’</li>
+</ul><div class="section level2">
+<h2 id="helpful-folders">Helpful folders:<a class="anchor" aria-label="anchor" href="#helpful-folders"></a></h2>
 <p>Typically, we encourage to make files for: 1. data 2. data_processed
 3. scripts</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="creating-a-timeseries">Creating a timeseries<a class="anchor" aria-label="anchor" href="#creating-a-timeseries"></a></h2>
+<hr class="half-width"><p>Start by opening up a new script file in RStudio.</p>
+<p>The ‘ts()’ function convertes a numeric vector into a time series R
+object: ts(vector, start = , end = , frequency = ).</p>
+<p>To create a random vector, use ‘sample()’</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">vector</span> <span class="op">&lt;-</span> <span class="fu">sample</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, size <span class="op">=</span> <span class="fl">50</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># x is a vector of the values to sample from (in this example, any number from 1 to 20)</span></span>
+<span><span class="co"># size is the length of the vector (in this example, 50 characters long)</span></span>
+<span><span class="co"># replace = TRUE allows values to be repeated in the vector</span></span>
+<span></span>
+<span><span class="co"># To make this vector into a time series, use 'ts()'</span></span>
+<span></span>
+<span><span class="va">timeseries</span> <span class="op">&lt;-</span> <span class="fu">ts</span><span class="op">(</span><span class="va">vector</span>, start <span class="op">=</span> <span class="fu">c</span><span class="op">(</span><span class="fl">2010</span>, <span class="fl">1</span><span class="op">)</span>, end <span class="op">=</span> <span class="fu">c</span><span class="op">(</span><span class="fl">2015</span>, <span class="fl">12</span><span class="op">)</span>, frequency <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span></code></pre>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
+<p>start is the time of first observation (in this example, January
+2010) end is the time of final observation (in this example, December
+2015) frequency is the number of observations per unit time (1 = annual,
+4 = quartly, 12 = monthly)</p>
 </div>
 </div>
 </div>
@@ -412,24 +461,29 @@ lesson.</p>
 <div id="exercise-1" class="callout-inner">
 <h3 class="callout-title">Exercise #1</h3>
 <div class="callout-content">
-<p>Can you find the Konza Prairie Biological Station on Google Maps?
-What state did this project take place in? What is the closest city?</p>
+<p>Make a basic plot of this timeseries.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
-<p>This project took place in Kansas, USA. The closest major city is
-Manhattan, KS.</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plot</span><span class="op">(</span><span class="va">timeseries</span><span class="op">)</span></span></code></pre>
 </div>
 </div>
 </div>
 </div>
+</div>
+<p>These plots will look differently for everyone, as we took a random
+sample to create our vector.</p>
 <div id="exercise-2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -437,40 +491,8 @@ Manhattan, KS.</p>
 <div id="exercise-2" class="callout-inner">
 <h3 class="callout-title">Exercise #2</h3>
 <div class="callout-content">
-<p>How do you upload a .csv file into R?</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">read.csv</span><span class="op">(</span><span class="st">"C://"</span>, header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3"> Output </h4>
-</button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
-<div class="accordion-body">
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>[1] "This new lesson looks good"</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout-inner">
-<h3 class="callout-title">Challenge 2: how do you nest solutions within challenge blocks?</h3>
-<div class="callout-content">
-
+<p>Make a timeseries that has annual samples from March 1992 to March
+2024 and plot it.</p>
 </div>
 </div>
 </div>
@@ -481,40 +503,20 @@ Manhattan, KS.</p>
 </button>
 <div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
-<p>You can add a line with at least three colons and a
-<code>solution</code> tag.</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">annual_ts</span> <span class="op">&lt;-</span> <span class="fu">ts</span><span class="op">(</span><span class="va">vector</span>, start <span class="op">=</span> <span class="fu">c</span><span class="op">(</span><span class="fl">1992</span>, <span class="fl">3</span><span class="op">)</span>, end <span class="op">=</span> <span class="fu">c</span><span class="op">(</span><span class="fl">2024</span>, <span class="fl">3</span><span class="op">)</span>, frequency <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">plot</span><span class="op">(</span><span class="va">annual_ts</span><span class="op">)</span></span></code></pre>
 </div>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="figures">Figures<a class="anchor" aria-label="anchor" href="#figures"></a></h2>
-<hr class="half-width"><p>You can also include figures generated from R Markdown:</p>
-<p><code>{r pyramid, fig.alt = "pie chart illusion of a pyramid", fig.cap = "Sun arise each and every morning"} pie(   c(Sky = 78, "Sunny side of pyramid" = 17, "Shady side of pyramid" = 5),    init.angle = 315,    col = c("deepskyblue", "yellow", "yellow3"),    border = FALSE )</code></p>
-<p>Or you can use standard markdown for static figures with the
-following syntax:</p>
-<p><code>![optional caption that appears below the figure](figure url){alt='alt text for accessibility purposes'}</code></p>
-<figure><img src="https://raw.githubusercontent.com/carpentries/logo/master/Badge_Carpentries.svg" alt="Blue Carpentries hex person logo with no text." class="figure mx-auto d-block"><div class="figcaption">You belong in The Carpentries!</div>
-</figure><div id="callout1" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout</h3>
-<div class="callout-content">
-<p>Callout sections can highlight information.</p>
-<p>They are sometimes used to emphasise particularly important points
-but are also used in some lessons to present “asides”: content that is
-not central to the narrative of the lesson, e.g. by providing the answer
-to a commonly-asked question.</p>
-</div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="math">Math<a class="anchor" aria-label="anchor" href="#math"></a></h2>
-<hr class="half-width"><p>One of our episodes contains <span class="math inline">\(\LaTeX\)</span> equations when describing how to
-create dynamic reports with {knitr}, so we now use mathjax to describe
-this:</p>
-<p><code>$\alpha = \dfrac{1}{(1 - \beta)^2}$</code> becomes: <span class="math inline">\(\alpha = \dfrac{1}{(1 - \beta)^2}\)</span></p>
-<p>Cool, right?</p>
+<p>Another helpful function for time series is ‘stl()’. This function
+will decompose the timeseries dataset to identify patterns.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -522,21 +524,216 @@ this:</p>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
-<ul><li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
-</ul></div>
+<p>Decomposition is a process that breaks down a time series dataset
+into different componsents to identify patterns and variations. This
+helps with predicting (or forecasting) future data points, finding
+trends, and identifying anomalies in the data (outliers).</p>
+<p>Trends in time series occur when there is an overall direction of the
+data. For example, when the data is increasing, decreasing, or remains
+constant over time. Outliers are single data points that go far outside
+the average value of a group of statistics.</p>
+<p>In addition to trends, time series data may have other qualities:
+Seasonality: A regularly repeating pattern of highs and lows related to
+regular calendar periods such as seasons, quarters, months, or days of
+the week Cycles: A series of fluctuations that occur over a long period
+of time, usually multiple years or decades Variation: A change or
+difference in condition, amount, or level. Often separated into short or
+long term variation. Stationarity: A times series is considered to be
+stationarity when the statistical properties do not depend on a time at
+which the series is observed (there is no temporal trend in the
+data)</p>
+<p>Some other terms to be aware of when working with time series:
+Missing values: Instances where a value for a specific variable is not
+recorded or available for a particular observation in a dataset (often
+recorded as NA or N/A or blank cells)</p>
 </div>
 </div>
+</div>
+<p>To look for seasonal decomposition, we can use</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">stl</span><span class="op">(</span><span class="va">timeseries</span>, s.window <span class="op">=</span> <span class="st">"period"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">plot</span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></code></pre>
+</div>
+<p>This function smooths out the seasonal trends in the data, taking the
+mean and smoothing out remainders to get overall trends in the data.</p>
+<div class="section level3">
+<h3 id="understanding-the-data">Understanding the Data<a class="anchor" aria-label="anchor" href="#understanding-the-data"></a></h3>
+<p>Make sure the data downloaded from <a href="">HydroShare for this
+lesson</a> are moved into the ‘data’ folder so you can easily find
+it.</p>
+<p>An important first step for any project is making sure you are
+familiar with the data.</p>
+<p>This lesson uses data collected for the Aquatic Intermittency effects
+on Microbiomes in Streams (AIMS; NSF OIA 2019603). This project seeks to
+explore the impacts of stream drying on downstream water quality across
+Kansas, Oklahoma, Alabama, Idaho, and Mississippi. AIMS integrates
+datasets on hydrology, microbiomes, macroinvertebrates, and
+biogeochemistry in three regions (Mountain West, Great Plains, and
+Southeast Forests) to test the overarching hypothesis that physical
+drivers (e.g., climate, hydrology) interact with biological drivers
+(e.g., microbes, biogeochemistry) to control water quality in
+non-perennial streams. Click here for an <a href="https://youtu.be/HDKIBNEnwdM" class="external-link">overview of the AIMS
+project</a>.</p>
+<div id="keypoints2" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
+<p>For our purposes, Non-perennial streams are rivers and streams that
+cease to flow at some point in time or space and are also commonly
+referred to as intermittent rivers and ephemeral streams (IRES).</p>
+</div>
+</div>
+</div>
+<p>This dataset was collected from an <a href="https://www.ysi.com/exo2" class="external-link">EXO2 Multiparameter Sonde</a> that can
+measure mutliple water chemistry parameters, including: conductivity,
+temperature, dissolved oxygen, pH, and others.</p>
+<p>One of these sensors was deployed in King’s Creek and the Konza
+Biological Prairie.</p>
+<div id="exercise-3" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="exercise-3" class="callout-inner">
+<h3 class="callout-title">Exercise #3</h3>
+<div class="callout-content">
+<p>Can you find the Konza Prairie Biological Station on Google Maps?
+What state did this project take place in? What is the closest city?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
+</button>
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div class="accordion-body">
+<p>This project took place in Kansas, USA. The exact coordinates for
+this site are: 39°05’32.2”N 96°35’13.9”W</p>
+<p>The closest major city is Manhattan, KS.</p>
+</div>
+</div>
+</div>
+</div>
+<p>In this lesson, we will explore the data collected by the sensor at
+the outlet of the King’s Creek watershed. We will compare groundwater
+data to surfacewater data to see when the stream dries.</p>
+<div id="keypoints3" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
+<p>A watershed is an area of land that separates water flowing to
+different rivers, basins, lakes, or the sea. Groundwater is freshwater
+that is stored in and orginiates from the ground between soil and rocks.
+Surfacewater is freshwater found on top fo land in a lake, river,
+stream, or pond.</p>
+</div>
+</div>
+</div>
+<p>Before we load the .csv files into R, try opening them using Excel.
+Since this will be your first time using the data, it is always a good
+idea to get familiar with the dataset.</p>
+<div id="discussion3" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Discussion</h3>
+<div class="callout-content">
+<p>Breakout rooms / At your table, answer the following questions:</p>
+<p>Can you see how many time points there are? - When was the first time
+point? - When was the last time point?</p>
+<p>What is the time interval of data collection?</p>
+<p>Do you have guesses as to what the columns mean?</p>
+</div>
+</div>
+</div>
+<div id="accordionInstructor2" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
+  <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
+</button>
+<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
+<div class="accordion-body">
+<p>This data was collected between XXXX 2021 and XXXX 2024 The EXO2
+collects data every 15 minutes. Column names: XXXXX</p>
+</div>
+</div>
+</div>
+</div>
+<p>Now that we have a better understanding of the data that we will be
+working with, let’s get started working in R!</p>
+<div id="exercise-4" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="exercise-4" class="callout-inner">
+<h3 class="callout-title">Exercise #4</h3>
+<div class="callout-content">
+<p>How do you upload a .csv file into R?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
+</button>
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">konza</span> <span class="op">&lt;-</span> <span class="fu">read.csv</span><span class="op">(</span><span class="st">"C://[location of your data]"</span>, header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Once your data is uploaded to R, it can be a lot easier to understand
+the data.</p>
+<p>To get a data summary, use</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">summary</span><span class="op">(</span><span class="va">konza</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Which will tell you the min, 1st quartile, median, mean, 3rd
+quartile, and maximum values for numeric columns in the dataset.</p>
+<p>Many of these numbers will be used to make boxplots of the data:</p>
+<div class="glossary">
+<p>Boxplot: A method for demonstrating the spread and skewness of the
+data. Uses min, 1st quartile, median, 3rd quartile, and maximum
+values</p>
+<p>Quartiles: The Q1 (1st Qu.) is the 25% of the data below that point,
+Q2 is the end of the second quartile and 50th percentile (median), Q3 is
+the third quartile and is the 75th percentile and upper 25% of the data
+(3rd. Qu.)</p>
+<p>Median: The middle number in an organized list of numbers</p>
+<p>Minimum: The lowest number in a list of numbers</p>
+<p>Maximum: The highest number in a list of numbers</p>
+<p>Another common statistic used is the mean:</p>
+<p>Mean: The average of a set of data</p>
+</div>
+<p>Now that we better understand the data, let’s get started on working
+on cleaning and manipulating the data!</p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</div>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/introduction.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
@@ -595,8 +792,8 @@ any links that you are not going to use.
   "url": "https://timeseries_in_R.github.io/NA/instructor/site_and_terms.html",
   "identifier": "https://timeseries_in_R.github.io/NA/instructor/site_and_terms.html",
   "dateCreated": "2024-10-23",
-  "dateModified": "2024-11-19",
-  "datePublished": "2024-12-24"
+  "dateModified": "2025-01-10",
+  "datePublished": "2025-01-10"
 }
 
   </script><script>
