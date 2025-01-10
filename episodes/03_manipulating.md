@@ -50,7 +50,14 @@ Tip - use names that are short, but clear.
 write.csv(konza_sw, ".../data_processed/surfacewater_KNZ_clean.csv"
 write.csv(konza_gw, ".../data_processed/groundwater_KNZ_clean.csv"
 ```
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::solution
+
+```output
+Fill in the solution...
+```
+
+::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::: exercise
 
 When working in R, sometimes you can have a lot of files open in your environment, making it difficult to keep track of what you 
 are working on. 
@@ -62,21 +69,31 @@ You can do this with individual files using the function rm()
 ```r
 rm(konza_sw)
 rm(konza_gw)
-```
-or by cleaning out the full environment all at once
-```r
+
+#or by cleaning out the full environment all at once
+
 rm(list = ls())
 ```
+:::::::::::::::::::::::: solution
+```output
 BE AWARE! Whenever you remove something from the environment there is no easy "back" or "undo" button in R. Always make sure you have 
 the version of the files that you need to continue with your work!
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: exercise
+````
+
+::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::
 
 ## Upload the cleaned dataframes
 
-
+::::::::::::::::::::::::::::::::: exercise
 
 ```r
 
 ```
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::: solution
+
+```output
+
+```
