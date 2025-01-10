@@ -105,8 +105,8 @@ head(konza_sw$timestamp)
 konza_sw$timestamp<- as.POSIXct(konza_sw$timestamp, format="%Y-%m-%d %H:%M", tz='America/Chicago')
 konza_gw$timestamp<- as.POSIXct(konza_gw$timestamp, format="%Y-%m-%d %H:%M", tz='America/Chicago')
 #check what timezone our data is in now
-head(konza_gw$timestamp)
 head(konza_sw$timestamp)
+head(konza_gw$timestamp)
 ```
 
 :::::::::::::::::::::::: solution
@@ -133,6 +133,8 @@ head(konza_sw$timestamp)
 ::::::::::::::::::::::::::::::::: exercise
 
 ```r
+library(ggplot2)
+
 ggplot(data= konza_sw)+
  geom_line(aes(x=timestamp, y=SW_Level_ft))+
  xlab("Time")+
@@ -222,6 +224,15 @@ a) konza_sw[c(67780:67830),]
 b) konza_sw[konza_sw$timestamp > "2022-09-23 11:50" & konza_sw$timestamp< "2022-09-25 12:00",]
 c) subset(konza_sw, SW_Level_ft < 0 )
 d) konza_sw[is.na(konza_sw$SW_Level_ft),]
+
+# you can also use the tidyverse package to subset data:
+
+e) konza_sw %>% 
+  filter(SW_Level_ft < 0)
+
+f) konza_sw %>% 
+  filter(!is.na(SW_Level_ft))
+
 ```
 
 :::::::::::::::::::::::: solution 
@@ -281,6 +292,20 @@ c) # A tibble: 22,000 × 5
 d) # A tibble: 0 × 5
 # ℹ 5 variables: ...1 <dbl>, timestamp <dttm>, SW_Temp_PT_C <dbl>, yearMonth <chr>, SW_Level_ft <dbl>
 
+e) 'data.frame':	22000 obs. of  5 variables:
+ $ X           : int  1 2 3 4 5 6 7 399 442 443 ...
+ $ timestamp   : POSIXct, format: "2021-06-09 10:10:00" "2021-06-09 10:20:00" "2021-06-09 10:30:00" "2021-06-09 10:50:00" ...
+ $ SW_Temp_PT_C: num  -9999 -9999 -9999 -9999 -9999 ...
+ $ yearMonth   : chr  "2021-06" "2021-06" "2021-06" "2021-06" ...
+ $ SW_Level_ft : num  -9999 -9999 -9999 -9999 -9999 ...
+
+f) 'data.frame':	22000 obs. of  5 variables:
+ $ X           : int  1 2 3 4 5 6 7 399 442 443 ...
+ $ timestamp   : POSIXct, format: "2021-06-09 10:10:00" "2021-06-09 10:20:00" "2021-06-09 10:30:00" "2021-06-09 10:50:00" ...
+ $ SW_Temp_PT_C: num  -9999 -9999 -9999 -9999 -9999 ...
+ $ yearMonth   : chr  "2021-06" "2021-06" "2021-06" "2021-06" ...
+ $ SW_Level_ft : num  -9999 -9999 -9999 -9999 -9999 ...
+
 ```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -298,11 +323,16 @@ Now that we know there are numerous weird values, we want to remove those from o
 ::::::::::::::::::::::::::::::::: exercise
 
 ```r
+# base R
 konza_sw$SW_Level_ft[konza_sw$SW_Level_ft< 0]<- NA
 konza_sw$SW_Temp_PT_C[konza_sw$SW_Temp_PT_C< -100]<- NA
 
-konza_sw$GW_Level_ft[konza_sw$GW_Level_ft< 0]<- NA
-konza_sw$GW_Temp_PT_C[konza_sw$GW_Temp_PT_C< -100]<- NA
+konza_gw$GW_Level_ft[konza_gw$GW_Level_ft< 0]<- NA
+konza_gw$GW_Temp_PT_C[konza_gw$GW_Temp_PT_C< -100]<- NA
+
+# tidyR example
+konza_sw <- konza_sw %>%
+mutate(SW_Level_ft = if_else(SW_Level_ft < 0, 0, SW_Level_ft))
 
 #subset and plot to see if our changes worked
 subset(konza_sw, SW_Level_ft < 0 )
