@@ -1,5 +1,5 @@
 ---
-title: "Define common timeseries terms and familiarize yourself with the field site"
+title: "Define terms and familiarize with the data"
 teaching: 20
 exercises: 10
 ---
@@ -23,13 +23,15 @@ exercises: 10
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## About this Lesson
-This lesson is meant to get us started on working with timeseries data. For this course, we wil 
-create an R project and make sure we have access to the datasets. During this lesson we will 
-familiarize ourselves with the data. This data was collected as a part of an NSF funded project, 
+During this lesson we will familiarize ourselves with the data. This data was collected as a part of an NSF funded project, 
 the Aquatic Intermittency effect of Microbiomes in Streams (AIMS; OSF OIA 2019603).  
-In this lesson we will review how to 1. make a project in R, 2. familiarize ourselves with the 
-data, 3. define common terms used in this lesson, 4. import .csv files, and 5. introuduce differences
-between coding in base R and using tidyverse.
+
+In this episode we will review how to 
+1. Make a project in R
+2. Familiarize ourselves with the data
+3. Define common terms used in this lesson
+4. Import .csv files
+5. Introuduce differences between coding in base R and using tidyverse.
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
@@ -256,9 +258,14 @@ Do you have guesses as to what the columns mean?
 
 :::::::::::::::::::::::: instructor
 
-This data was collected between XXXX 2021 and XXXX 2024
+This data was collected between June 9 2021 and September 23 2022
 The EXO2 collects data every 15 minutes.
-Column names: XXXXX 
+Column names: 
+1. X - default column, row number
+2. timestamp - the day / time of measurement
+3. Temp_PT_C - the temperature measured
+4. yearMonth - the year and month of each measurement
+5. Level_ft - water stage data
 
 ::::::::::::::::::::::::
 
@@ -273,7 +280,9 @@ How do you upload a .csv file into R?
 :::::::::::::::::::::::: solution
 
 ```r
-konza <- read.csv("C://[location of your data]", header = TRUE)
+sw_konza <- read.csv("C://Users/mhope/Desktop/AIMS_GitHub/Carpentries_time_series/data/KNZ_SW_temp_stage_pipeline_mk.csv", header = TRUE)
+
+gw_konza <- read.csv("C://Users/mhope/Desktop/AIMS_GitHub/Carpentries_time_series/data/KNZ_GW_temp_stage_pipeline_mk.csv", header = TRUE)
 ```
 
 ::::::::::::::::::::::::
@@ -285,7 +294,7 @@ Once your data is uploaded to R, it can be a lot easier to understand the data.
 To get a data summary, use
 
 ```r
-summary(konza)
+summary(sw_konza)
 ```
 
 Which will tell you the min, 1st quartile, median, mean, 3rd quartile, and maximum values 
