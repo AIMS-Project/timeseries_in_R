@@ -280,9 +280,9 @@ How do you upload a .csv file into R?
 :::::::::::::::::::::::: solution
 
 ```r
-sw_konza <- read.csv("C://Users/mhope/Desktop/AIMS_GitHub/Carpentries_time_series/data/KNZ_SW_temp_stage_pipeline_mk.csv", header = TRUE)
+konza_sw <- read.csv("C://Users/mhope/Desktop/AIMS_GitHub/Carpentries_time_series/data/KNZ_SW_temp_stage_pipeline_mk.csv", header = TRUE)
 
-gw_konza <- read.csv("C://Users/mhope/Desktop/AIMS_GitHub/Carpentries_time_series/data/KNZ_GW_temp_stage_pipeline_mk.csv", header = TRUE)
+konza_gw <- read.csv("C://Users/mhope/Desktop/AIMS_GitHub/Carpentries_time_series/data/KNZ_GW_temp_stage_pipeline_mk.csv", header = TRUE)
 ```
 
 ::::::::::::::::::::::::
