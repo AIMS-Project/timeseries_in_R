@@ -355,7 +355,7 @@ analysis and practice some basic visualization. To do this, we will:</p>
 again.</li>
 <li>Combine datasets.</li>
 <li>Create basic plots to observe trends over various time frames.</li>
-</ol><p>We will use the files Konza_GW.csv and Konza_SW.csv cleaned in the
+</ol><p>We will use the files konza_gw.csv and konza_sw.csv cleaned in the
 previous lession and the same R packages. Please remember, we created
 new datasets without oultiers or missing datapoints to create a clean
 dataframe. As a reminder we will need packages ggplot2, tidyr, readr,
@@ -373,6 +373,37 @@ now.</p>
 </div>
 </div>
 </div>
+<p>Depending on your project and the anlyses you want to do, you may
+want to change the layout of a data set.</p>
+<p>Currently, our surface and ground water data sets are in the long
+format:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">str</span><span class="op">(</span><span class="va">konza_sw</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>data.frame':	67804 obs. of  7 variables:
+ $ X               : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ timestamp       : POSIXct, format: "2021-06-09 10:10:00" "2021-06-09 10:20:00" "2021-06-09 10:30:00" "2021-06-09 10:50:00" ...
+ $ SW_Temp_PT_C    : num  NA NA NA NA NA ...
+ $ yearMonth       : chr  "2021-06" "2021-06" "2021-06" "2021-06" ...
+ $ SW_Level_ft     : num  NA NA NA NA NA NA NA 1.17 1.16 1.16 ...
+ $ SW_TEMP_PT_C_int: num  NA NA NA NA NA ...
+ $ SW_Level_ft_int : num  NA NA NA NA NA NA NA 1.17 1.16 1.16 ...</code></pre>
+</div>
+<p>Let’s say we wanted to make the surface water data set into a wide
+format, where each temperature and water level point would be averaged
+over each yearMonth</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"></code></pre>
+</div>
 </section><div class="section level2 exercise">
 <h2 id="save-the-cleaned-dataframes">Save the cleaned dataframes<a class="anchor" aria-label="anchor" href="#save-the-cleaned-dataframes"></a></h2>
 <p>We can use R to create versions of our cleaned dataframes so we won’t
@@ -381,11 +412,11 @@ want to work with the data.</p>
 <p>To keep our R project neat, save these files in the folder
 “data_processed”.</p>
 <p>Tip - use names that are short, but clear.</p>
-<div class="codewrapper sourceCode" id="cb1">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">write.csv</span>(konza_sw, <span class="st">".../data_processed/surfacewater_KNZ_clean.csv"</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">write.csv</span>(konza_gw, <span class="st">".../data_processed/groundwater_KNZ_clean.csv"</span></span></code></pre>
+<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">write.csv</span>(konza_sw, <span class="st">".../data_processed/surfacewater_KNZ_clean.csv"</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">write.csv</span>(konza_gw, <span class="st">".../data_processed/groundwater_KNZ_clean.csv"</span></span></code></pre>
 </div>
 </div>
 <p>When working in R, sometimes you can have a lot of files open in your
@@ -394,7 +425,7 @@ on.</p>
 <p>It can be helpful to periodically remove files to keep a clean
 environment.</p>
 <p>You can do this with individual files using the function rm()</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -402,7 +433,7 @@ environment.</p>
 <span><span class="fu">rm</span><span class="op">(</span><span class="va">konza_gw</span><span class="op">)</span></span></code></pre>
 </div>
 <p>or by cleaning out the full environment all at once</p>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -413,7 +444,7 @@ no easy “back” or “undo” button in R. Always make sure you have the
 version of the files that you need to continue with your work!</p>
 <div class="section level2 exercise">
 <h2 id="upload-the-cleaned-dataframes">Upload the cleaned dataframes<a class="anchor" aria-label="anchor" href="#upload-the-cleaned-dataframes"></a></h2>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
