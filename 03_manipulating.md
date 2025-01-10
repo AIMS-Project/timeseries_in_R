@@ -1,7 +1,7 @@
 ---
 title: "Manipulating a time series data frame"
-teaching: XX
-exercises: XX
+teaching: 20
+exercises: 10
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
