@@ -51,6 +51,8 @@ working directory for you and sets the working directory to the project.
 
 Using file explorer, create a new folder and R project for this lesson. 
 
+:::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::: discussion 
 
 What folders would be good to include?
@@ -69,8 +71,6 @@ Typically, we encourage to make files for:
 1. data
 2. data_processed
 3. scripts
-   
-:::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::
 
@@ -84,6 +84,7 @@ ts(vector, start = , end = , frequency = ).
 To create a random vector, use 'sample()'
 
 ```r
+
 vector <- sample(x = 1:20, size = 50, replace = TRUE)
 
 # x is a vector of the values to sample from (in this example, any number from 1 to 20)
@@ -95,6 +96,7 @@ vector <- sample(x = 1:20, size = 50, replace = TRUE)
 To make this vector into a time series, use 'ts()'
 
 ```r
+
 timeseries <- ts(vector, start = c(2010, 1), end = c(2015, 12), frequency = 12)
 
 # start is the time of first observation (in this example, January 2010)
