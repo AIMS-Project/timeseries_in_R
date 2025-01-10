@@ -1,7 +1,7 @@
 ---
 title: "Define common timeseries terms and familiarize yourself with the field site"
-teaching: XX
-exercises: XX
+teaching: 20
+exercises: 10
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
