@@ -105,6 +105,7 @@ frequency is the number of observations per unit time (1 = annual, 4 = quartly, 
 
 :::::::::::::::::::::::::::::::::::::
 
+
 ::::::::::::::::::::::::::::::::::::: challenge 
 
 ## Exercise #1
@@ -120,6 +121,7 @@ plot(timeseries)
 :::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::
+
 
 These plots will look differently for everyone, as we took a random sample to create our vector.
 
@@ -175,7 +177,7 @@ To look for seasonal decomposition, we can use
 fit <- stl(timeseries, s.window = "period")
 
 plot(fit)
-``
+```
 
 This function smooths out the seasonal trends in the data, taking the mean and smoothing out remainders 
 to get overall trends in the data. 
