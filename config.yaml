@@ -69,6 +69,7 @@ episodes:
 - introduction.Rmd
 - site_and_terms.md
 - CleanDataCollectedFromTheField.md
+- 03_manipulating.md
 
 # Information for Learners
 learners: 
