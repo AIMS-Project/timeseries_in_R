@@ -256,7 +256,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="site_and_terms.html">2. Define common timeseries terms and familiarize yourself with the field site</a>
+        <a href="site_and_terms.html">2. Define terms and familiarize with the data</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -560,7 +560,7 @@ locally</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section><section id="aio-site_and_terms"><p>Content from <a href="site_and_terms.html">Define common timeseries terms and familiarize yourself with the field site</a></p>
+</section></section><section id="aio-site_and_terms"><p>Content from <a href="site_and_terms.html">Define terms and familiarize with the data</a></p>
 <hr>
 <p>Last updated on 2025-01-10 |
 
@@ -603,16 +603,14 @@ any links that you are not going to use.
 <section><h2 class="section-heading" id="about-this-lesson">About this Lesson<a class="anchor" aria-label="anchor" href="#about-this-lesson"></a>
 </h2>
 <hr class="half-width">
-<p>This lesson is meant to get us started on working with timeseries
-data. For this course, we wil create an R project and make sure we have
-access to the datasets. During this lesson we will familiarize ourselves
-with the data. This data was collected as a part of an NSF funded
-project, the Aquatic Intermittency effect of Microbiomes in Streams
-(AIMS; OSF OIA 2019603).<br>
-In this lesson we will review how to 1. make a project in R, 2.
-familiarize ourselves with the data, 3. define common terms used in this
-lesson, 4. import .csv files, and 5. introuduce differences between
-coding in base R and using tidyverse.</p>
+<p>During this lesson we will familiarize ourselves with the data. This
+data was collected as a part of an NSF funded project, the Aquatic
+Intermittency effect of Microbiomes in Streams (AIMS; OSF OIA
+2019603).</p>
+<p>In this episode we will review how to 1. Make a project in R 2.
+Familiarize ourselves with the data 3. Define common terms used in this
+lesson 4. Import .csv files 5. Introuduce differences between coding in
+base R and using tidyverse.</p>
 <div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
@@ -933,8 +931,11 @@ point? - When was the last time point?</p>
 </button>
 <div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
 <div class="accordion-body">
-<p>This data was collected between XXXX 2021 and XXXX 2024 The EXO2
-collects data every 15 minutes. Column names: XXXXX</p>
+<p>This data was collected between June 9 2021 and September 23 2022 The
+EXO2 collects data every 15 minutes. Column names: 1. X - default
+column, row number 2. timestamp - the day / time of measurement 3.
+Temp_PT_C - the temperature measured 4. yearMonth - the year and month
+of each measurement 5. Level_ft - water stage data</p>
 </div>
 </div>
 </div>
@@ -963,7 +964,9 @@ working with, let’s get started working in R!</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">konza</span> <span class="op">&lt;-</span> <span class="fu">read.csv</span><span class="op">(</span><span class="st">"C://[location of your data]"</span>, header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">sw_konza</span> <span class="op">&lt;-</span> <span class="fu">read.csv</span><span class="op">(</span><span class="st">"C://Users/mhope/Desktop/AIMS_GitHub/Carpentries_time_series/data/KNZ_SW_temp_stage_pipeline_mk.csv"</span>, header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">gw_konza</span> <span class="op">&lt;-</span> <span class="fu">read.csv</span><span class="op">(</span><span class="st">"C://Users/mhope/Desktop/AIMS_GitHub/Carpentries_time_series/data/KNZ_GW_temp_stage_pipeline_mk.csv"</span>, header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -976,7 +979,7 @@ the data.</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">summary</span><span class="op">(</span><span class="va">konza</span><span class="op">)</span></span></code></pre>
+<code class="sourceCode R"><span><span class="fu">summary</span><span class="op">(</span><span class="va">sw_konza</span><span class="op">)</span></span></code></pre>
 </div>
 <p>Which will tell you the min, 1st quartile, median, mean, 3rd
 quartile, and maximum values for numeric columns in the dataset.</p>
@@ -1727,7 +1730,7 @@ lubridate, zoo, and dplyr.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Make sure everyone knows what datasets we are using and to upload
 now.</p>
