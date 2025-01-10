@@ -5,20 +5,25 @@ exercises: XX
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
+
 - What can you expect from this training?
 - Where are these data coming from?
 - What is a timeseries and why are they important?
+  
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
+
 - Create an R project with folders
 - Get familiar with datasets
 - Define common terms used to describe timeseries
 - Import csv data into R
 - Understand differences between base R and tidyverse approaches
+  
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## About this Lesson
+
 This lesson is meant to get us started on working with timeseries data. For this course, we wil 
 create an R project and make sure we have access to the datasets. During this lesson we will 
 familiarize ourselves with the data. This data was collected as a part of an NSF funded project, 
@@ -28,11 +33,13 @@ data, 3. define common terms used in this lesson, 4. import .csv files, and 5. i
 between coding in base R and using tidyverse.
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+
 It might be a good idea to check with Learners to see if they were able to get the 
 R project created and the data downloaded to assess if running through the 'Getting Started' section 
 is needed.
 
 Use sticky notes / zoom reactions to check for completedness
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Getting Started
