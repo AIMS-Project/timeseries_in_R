@@ -144,6 +144,7 @@ Group.1 SW_TEMP_PT_C_int SW_Level_ft_int
 
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: challenge
+
 ## Change the groundwater data frame into a yearMonth dataframe and an annual dataframe
 
 Fill in the blank in the code below to aggregate the data by year-month, melt to long format, and aggregate the data by year for the groundwater data
@@ -212,12 +213,15 @@ head(konza_gw_annual)
 2    2022          12.4111        2.461994
 
 ```
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-What if we want to compare the monthly values of surface water and groundwater? We can merge the two dataframes and plot both together. 
+## Compare groundwater and surface water data
+
+What if we want to compare the monthly surface water and groundwater values? We can merge the two dataframes and plot both together. 
 
 #Add a dataset column, and bind the month-day groundwater and surface water dataframes
+
 ```r
 #add the datasets so we can keep track of which data belongs where
 konza_gw_yrmnth_long$dataset<- 'Groundwater'
@@ -240,7 +244,8 @@ konza_yrmonth$variable<- gsub(pattern = 'SW_', replacement = "", konza_yrmonth$v
 6 2021-11-01 TEMP_PT_C_int 12.07231 Groundwater
 ```
 
-#Next, plot the dataframes using ggplot 
+Next, plot the dataframes using ggplot 
+
 ```r
 ggplot(data=konza_yrmonth)+ 
   geom_line(aes(x=Group.1, y=value, color=dataset))+
