@@ -144,7 +144,7 @@ ggplot(data= konza_sw)+
 :::::::::::::::::::::::: solution 
  
 ```output
-![Raw surface water level (ft)](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_level_raw.png?raw=true)
+![Raw surface water level (ft)](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_level_raw.png)
 
 
 ```
@@ -164,7 +164,7 @@ ggplot(data= konza_sw)+
 :::::::::::::::::::::::: solution 
 
 ```output
-![Raw surface water temperature](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_temp_raw.png)
+![Raw surface water temperature](timeseries_in_R/instructors/sw_temp_raw.png)
 
 
 
@@ -195,7 +195,7 @@ ggplot(data= _____)+
 ## Output
  
 ```output
-![Raw groundwater level](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/gw_level_raw.png)
+![Raw groundwater level](https://github.com/AIMS-Project/timeseries_in_R/instructors/gw_level_raw.png)
 
 
 ![Raw groundwater temperature](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/gw_temp_raw.png)
