@@ -168,8 +168,8 @@ head(konza_gw_annual)
 
 #format the date column
 konza_gw_yrmnth_long$Group.1<- ym(__________)
-
-:::::::::::::::::::::::: solution 
+```
+:::::::::::::::::::::::::::::::::::::::::::::::::::: solution 
 
 ## Output
  
