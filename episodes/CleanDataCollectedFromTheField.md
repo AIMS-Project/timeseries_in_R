@@ -165,7 +165,7 @@ ggplot(data= konza_sw)+
 
 ```output
 ![sw_temp_raw](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_temp_raw.png)
-![sw_temp_raw](instructors/sw_temp_raw.png)
+![sw_temp_raw](sw_temp_raw.png)
 
 ```
 
