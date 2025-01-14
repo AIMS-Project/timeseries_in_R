@@ -167,8 +167,14 @@ ggplot(data= konza_sw)+
 ![sw_temp_raw](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_temp_raw.png)
 ![sw_temp_raw]("https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_temp_raw.png")
 ![sw_temp_raw]("https://github.com/AIMS-Project/timeseries_in_R/instructors/sw_temp_raw.png")
+![swtemp](/AIMS-Project/timeseries_in_R/blob/main/episodes/sw_temp_raw.png)
+![swtemp](github.com/AIMS-Project/timeseries_in_R/blob/main/episodes/sw_temp_raw.png)
+![swtemp](timeseries_in_R/blob/main/episodes/sw_temp_raw.png)
+![swtemp]("timeseries_in_R/blob/main/episodes/sw_temp_raw.png")
 ![sw_temp_raw](timeseries_in_R/episodes/sw_temp_raw.png)
 ![sw_temp_raw]("timeseries_in_R/episodes/sw_temp_raw.png")
+![sw_temp_raw](/episodes/sw_temp_raw.png)
+![sw_temp_raw]("/episodes/sw_temp_raw.png")
 ```
 
 :::::::::::::::::::::::::::::::::
