@@ -353,24 +353,19 @@ ggplot(data= konza_gw)+
 
 :::::::::::::::::::::::: solution 
 
-```output
 
-# A tibble: 0 × 5
-# ℹ 5 variables: ...1 <dbl>, timestamp <dttm>, SW_Temp_PT_C <dbl>, yearMonth <chr>, SW_Level_ft <dbl>
-
-![Surface water level](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_level_edit.png)
+![Surface water level](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_level_edit.png?raw=true)
 
 
-![Surface water temperature](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_temp_edit.png)
+![Surface water temperature](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_temp_edit.png?raw=true)
 
 
-![Groundwater level](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/gw_level_edit.png)
+![Groundwater level](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/gw_level_edit.png?raw=true)
 
 
-![Groundwater Temperature](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/gw_temp_edit.png)
+![Groundwater Temperature](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/gw_temp_edit.png?raw=true)
 
 
-```
 
 :::::::::::::::::::::::::::::::::
 
