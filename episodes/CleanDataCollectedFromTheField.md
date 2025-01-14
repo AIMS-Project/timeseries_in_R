@@ -142,12 +142,9 @@ ggplot(data= konza_sw)+
 ```
 
 :::::::::::::::::::::::: solution 
- 
-```output
-![Raw surface water level (ft)](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_level_raw.png)
 
+![Raw surface water level (ft)](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_level_raw.png?raw=true)
 
-```
 ::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::: exercise
@@ -162,30 +159,8 @@ ggplot(data= konza_sw)+
 ```
 
 :::::::::::::::::::::::: solution 
+![Surface Water Temperature: Raw](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_temp_raw.png?raw=true)
 
-```output
-"![swtemp1](/AIMS-Project/timeseries_in_R/blob/main/episodes/sw_temp_raw.png)"
-"![swtemp2](github.com/AIMS-Project/timeseries_in_R/blob/main/episodes/sw_temp_raw.png)"
-"![swtemp3](timeseries_in_R/blob/main/episodes/sw_temp_raw.png)"
-"![swtemp4]("timeseries_in_R/blob/main/episodes/sw_temp_raw.png")"
-"![swtemp5](\AIMS-Project\timeseries_in_R\blob\main\episodes\sw_temp_raw.png)"
-"![swtemp6](github.com\AIMS-Project\timeseries_in_R\blob\main\episodes\sw_temp_raw.png)"
-"![swtemp7](timeseries_in_R\blob\main\episodes\sw_temp_raw.png)"
-"![swtemp8]("timeseries_in_R\blob/main\episodes\sw_temp_raw.png")"
-"![swtemp9](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_temp_raw.png?raw=true)"
-"![swtemp10]("https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_temp_raw.png?raw=true")"
-```
-
-![swtemp1](/AIMS-Project/timeseries_in_R/blob/main/episodes/sw_temp_raw.png)
-![swtemp2](github.com/AIMS-Project/timeseries_in_R/blob/main/episodes/sw_temp_raw.png)
-![swtemp3](timeseries_in_R/blob/main/episodes/sw_temp_raw.png)
-![swtemp4]("timeseries_in_R/blob/main/episodes/sw_temp_raw.png")
-![swtemp5](\AIMS-Project\timeseries_in_R\blob\main\episodes\sw_temp_raw.png)
-![swtemp6](github.com\AIMS-Project\timeseries_in_R\blob\main\episodes\sw_temp_raw.png)
-![swtemp7](timeseries_in_R\blob\main\episodes\sw_temp_raw.png)
-![swtemp8]("timeseries_in_R\blob/main\episodes\sw_temp_raw.png")
-![swtemp9](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_temp_raw.png?raw=true)
-![swtemp10]("https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_temp_raw.png?raw=true")
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::: challenge 
@@ -209,14 +184,12 @@ ggplot(data= _____)+
 :::::::::::::::::::::::: solution 
 
 ## Output
- 
-```output
-![Raw groundwater level](https://github.com/AIMS-Project/timeseries_in_R/instructors/gw_level_raw.png)
+
+![Raw groundwater level](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/gw_level_raw.png?raw=true)
 
 
-![Raw groundwater temperature](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/gw_temp_raw.png)
+![Raw groundwater temperature](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/gw_temp_raw.png?raw=true)
 
-```
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
