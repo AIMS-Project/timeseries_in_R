@@ -309,7 +309,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Manipulating a time series data frame</h1>
-        <p>Last updated on 2025-01-13 |
+        <p>Last updated on 2025-01-14 |
 
         <a href="https://aims-project.github.io/timeseries_in_R/edit/main/episodes/03_manipulating.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -384,6 +384,13 @@ format:</p>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">str</span><span class="op">(</span><span class="va">konza_sw</span><span class="op">)</span></span></code></pre>
 </div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -395,6 +402,10 @@ format:</p>
  $ SW_Level_ft     : num  NA NA NA NA NA NA NA 1.17 1.16 1.16 ...
  $ SW_TEMP_PT_C_int: num  NA NA NA NA NA ...
  $ SW_Level_ft_int : num  NA NA NA NA NA NA NA 1.17 1.16 1.16 ...</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <p>Let’s say we wanted to make the surface water data set into monthly
 averages, then into long format for plotting in ggplot facets. 1) Using
@@ -421,6 +432,13 @@ using ggplot</p>
 <span>             labeller<span class="op">=</span><span class="fu">as_labeller</span><span class="op">(</span><span class="fu">c</span><span class="op">(</span><span class="st">'SW_TEMP_PT_C_int'</span><span class="op">=</span><span class="st">'Surface Water Temperature (°C)'</span>,<span class="st">'SW_Level_ft_int'</span><span class="op">=</span> <span class="st">"Surface Water Level (ft)"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -449,9 +467,12 @@ Group.1 SW_TEMP_PT_C_int SW_Level_ft_int
 3 2021-08-01 SW_TEMP_PT_C_int 24.95999
 4 2021-09-01 SW_TEMP_PT_C_int 20.27977
 5 2021-10-01 SW_TEMP_PT_C_int 14.24646
-6 2021-11-01 SW_TEMP_PT_C_int  9.85322
-
-</code></pre>
+6 2021-11-01 SW_TEMP_PT_C_int  9.85322</code></pre>
+</div>
+<figure><img src="https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/surfacewaterlevel_month-year.png?raw=true" alt="Surface Water Temperature and Level" class="figure mx-auto d-block"><div class="figcaption">Surface Water Temperature and Level</div>
+</figure></div>
+</div>
+</div>
 </div>
 <p>Let’s say we wanted to make the surface water data set into an annual
 timeframe. To do this we will: - add a column that only includes the
@@ -468,6 +489,13 @@ year - aggregate our data by the year column</p>
 <span><span class="va">konza_sw_annual</span><span class="op">&lt;-</span> <span class="fu">aggregate</span><span class="op">(</span><span class="va">konza_sw</span><span class="op">[</span>,<span class="fu">c</span><span class="op">(</span><span class="fl">6</span>,<span class="fl">7</span><span class="op">)</span><span class="op">]</span>, <span class="fu">list</span><span class="op">(</span><span class="va">konza_sw</span><span class="op">$</span><span class="va">yr</span><span class="op">)</span>, FUN<span class="op">=</span><span class="va">mean</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
 <span><span class="fu">head</span><span class="op">(</span><span class="va">konza_sw_annual</span><span class="op">)</span></span></code></pre>
 </div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -486,6 +514,10 @@ Group.1 SW_TEMP_PT_C_int SW_Level_ft_int
 1    2021         15.34314       0.5591678
 2    2022         12.01738       1.0039842
 </code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="change-the-groundwater-data-frame-into-a-yearmonth-dataframe-and-an-annual-dataframe" class="callout challenge">
 <div class="callout-square">
@@ -523,12 +555,12 @@ groundwater data</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Output </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4"> Output </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -595,6 +627,13 @@ water dataframes</p>
 <span><span class="va">konza_yrmonth</span><span class="op">$</span><span class="va">variable</span><span class="op">&lt;-</span> <span class="fu">gsub</span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'GW_'</span>, replacement <span class="op">=</span> <span class="st">""</span>, <span class="va">konza_yrmonth</span><span class="op">$</span><span class="va">variable</span><span class="op">)</span></span>
 <span><span class="va">konza_yrmonth</span><span class="op">$</span><span class="va">variable</span><span class="op">&lt;-</span> <span class="fu">gsub</span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'SW_'</span>, replacement <span class="op">=</span> <span class="st">""</span>, <span class="va">konza_yrmonth</span><span class="op">$</span><span class="va">variable</span><span class="op">)</span></span></code></pre>
 </div>
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
+</button>
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -605,6 +644,10 @@ water dataframes</p>
 4 2021-09-01 TEMP_PT_C_int 19.54039 Groundwater
 5 2021-10-01 TEMP_PT_C_int 16.45497 Groundwater
 6 2021-11-01 TEMP_PT_C_int 12.07231 Groundwater</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <p>Next, plot the dataframes using ggplot</p>
 <div class="codewrapper sourceCode" id="cb11">
@@ -620,10 +663,18 @@ water dataframes</p>
 <span>                                                             <span class="st">'Level_ft_int'</span><span class="op">=</span> <span class="st">"Water Level (ft)"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code><span><span class="co">#The plot grid</span></span></code></pre>
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
+</button>
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div class="accordion-body">
+<figure><img src="https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/surfacewaterlevel_month-year.png?raw=true" alt="Monthly Groundwater and Surface Water Level and Temperature" class="figure mx-auto d-block"><div class="figcaption">Monthly Groundwater and Surface Water Level and
+Temperature</div>
+</figure></div>
+</div>
+</div>
 </div>
 </section><div class="section level2 exercise">
 <h2 id="save-the-cleaned-dataframes">Save the cleaned dataframes<a class="anchor" aria-label="anchor" href="#save-the-cleaned-dataframes"></a></h2>
@@ -633,12 +684,12 @@ want to work with the data.</p>
 <p>To keep our R project neat, save these files in the folder
 “data_processed”.</p>
 <p>Tip - use names that are short, but clear.</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">write.csv</span>(konza_sw, <span class="st">".../data_processed/surfacewater_KNZ_clean.csv"</span></span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">write.csv</span>(konza_gw, <span class="st">".../data_processed/groundwater_KNZ_clean.csv"</span></span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="fu">write.csv</span>(konza_yrmonth, <span class="st">".../data_processed/gw_sw_yrmnth_KNZ.csv)</span></span></code></pre>
+<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">write.csv</span>(konza_sw, <span class="st">".../data_processed/surfacewater_KNZ_clean.csv"</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">write.csv</span>(konza_gw, <span class="st">".../data_processed/groundwater_KNZ_clean.csv"</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="fu">write.csv</span>(konza_yrmonth, <span class="st">".../data_processed/gw_sw_yrmnth_KNZ.csv)</span></span></code></pre>
 </div>
 </div>
 <p>When working in R, sometimes you can have a lot of files open in your
@@ -647,7 +698,7 @@ on.</p>
 <p>It can be helpful to periodically remove files to keep a clean
 environment.</p>
 <p>You can do this with individual files using the function rm()</p>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -655,7 +706,7 @@ environment.</p>
 <span><span class="fu">rm</span><span class="op">(</span><span class="va">konza_gw</span><span class="op">)</span></span></code></pre>
 </div>
 <p>or by cleaning out the full environment all at once</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -666,7 +717,7 @@ no easy “back” or “undo” button in R. Always make sure you have the
 version of the files that you need to continue with your work!</p>
 <div class="section level2 exercise">
 <h2 id="upload-the-cleaned-dataframes">Upload the cleaned dataframes<a class="anchor" aria-label="anchor" href="#upload-the-cleaned-dataframes"></a></h2>
-<div class="codewrapper sourceCode" id="cb16">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -738,7 +789,7 @@ any links that you are not going to use.
   "url": "https://timeseries_in_R.github.io/NA/instructor/03_manipulating.html",
   "identifier": "https://timeseries_in_R.github.io/NA/instructor/03_manipulating.html",
   "dateCreated": "2024-10-23",
-  "dateModified": "2025-01-13",
+  "dateModified": "2025-01-14",
   "datePublished": "2025-01-14"
 }
 
