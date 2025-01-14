@@ -47,6 +47,7 @@ Currently, our surface and ground water data sets are in the long format:
 str(konza_sw)
 ```
 
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: solution
 ```output
 data.frame':	67804 obs. of  7 variables:
  $ X               : int  1 2 3 4 5 6 7 8 9 10 ...
@@ -57,6 +58,7 @@ data.frame':	67804 obs. of  7 variables:
  $ SW_TEMP_PT_C_int: num  NA NA NA NA NA ...
  $ SW_Level_ft_int : num  NA NA NA NA NA NA NA 1.17 1.16 1.16 ...
 ```
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Let's say we wanted to make the surface water data set into monthly averages, then into long format for plotting in ggplot facets. 1) Using the yearMonth column we will average the temperature and water level data by each year-month 2) melt the data into a long column 3) plot using ggplot
 
@@ -78,7 +80,7 @@ ggplot(data=konza_sw_yrmnth_long)+
   theme_bw()
 
 ```
-
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: solution
 ```output
 #The aggregated konza sw data should look like the dataframe below
 Group.1 SW_TEMP_PT_C_int SW_Level_ft_int
@@ -106,9 +108,11 @@ Group.1 SW_TEMP_PT_C_int SW_Level_ft_int
 4 2021-09-01 SW_TEMP_PT_C_int 20.27977
 5 2021-10-01 SW_TEMP_PT_C_int 14.24646
 6 2021-11-01 SW_TEMP_PT_C_int  9.85322
-
-
 ```
+![Surface Water Temperature and Level](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/surfacewaterlevel_month-year.png?raw=true)
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 Let's say we wanted to make the surface water data set into an annual timeframe. To do this we will:
 - add a column that only includes the year
 - aggregate our data by the year column
@@ -123,7 +127,7 @@ konza_sw_annual<- aggregate(konza_sw[,c(6,7)], list(konza_sw$yr), FUN=mean, na.r
 head(konza_sw_annual)
 
 ```
-
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: solution
 ```output
 # A tibble: 6 × 8
    ...1 timestamp           SW_Temp_PT_C yearMonth SW_Level_ft SW_TEMP_PT_C_int SW_Level_ft_int    yr
@@ -141,7 +145,7 @@ Group.1 SW_TEMP_PT_C_int SW_Level_ft_int
 2    2022         12.01738       1.0039842
 
 ```
-
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: challenge
 
@@ -233,7 +237,7 @@ konza_yrmnth<- rbind(konza_gw_yrmnth_long, konza_sw_yrmnth_long) #since the colu
 konza_yrmonth$variable<- gsub(pattern = 'GW_', replacement = "", konza_yrmonth$variable)
 konza_yrmonth$variable<- gsub(pattern = 'SW_', replacement = "", konza_yrmonth$variable)
 ```
-
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: solution
 ```output
      Group.1      variable    value     dataset
 1 2021-06-01 TEMP_PT_C_int 13.96984 Groundwater
@@ -243,6 +247,7 @@ konza_yrmonth$variable<- gsub(pattern = 'SW_', replacement = "", konza_yrmonth$v
 5 2021-10-01 TEMP_PT_C_int 16.45497 Groundwater
 6 2021-11-01 TEMP_PT_C_int 12.07231 Groundwater
 ```
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Next, plot the dataframes using ggplot 
 
@@ -257,11 +262,11 @@ ggplot(data=konza_yrmonth)+
   theme_bw()
 
 ```
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: solution
 
-```output
-#The plot grid
+![Monthly Groundwater and Surface Water Level and Temperature](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/surfacewaterlevel_month-year.png?raw=true)
 
-```
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: exercise
 
 ## Save the cleaned dataframes
