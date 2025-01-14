@@ -185,6 +185,9 @@ ggplot(data= konza_sw)+
 ![sw_temp_raw]("timeseries_in_R\episodes\sw_temp_raw.png")
 ![sw_temp_raw](\episodes\sw_temp_raw.png)
 ![sw_temp_raw]("\episodes\sw_temp_raw.png")
+
+![swtemp](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_temp_raw.png?raw=true)
+![swtemp]("https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_temp_raw.png?raw=true")
 ```
 
 :::::::::::::::::::::::::::::::::
