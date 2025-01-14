@@ -264,7 +264,7 @@ ggplot(data=konza_yrmonth)+
 ```
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: solution
 
-![Monthly Groundwater and Surface Water Level and Temperature](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/surfacewaterlevel_month-year.png?raw=true)
+![Monthly Groundwater and Surface Water Level and Temperature](https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/Allwaterlevel_month-year.png?raw=true)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: exercise
