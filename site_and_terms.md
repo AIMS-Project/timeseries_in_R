@@ -133,7 +133,7 @@ These plots will look differently for everyone, as we took a random sample to cr
 
 ## Exercise #2
 
-Make a timeseries that has annual samples from March 1992 to March 2024 and plot it.
+Using the vector we created, make a timeseries that has annual samples from March 1992 to March 2024 and plot it.
 
 :::::::::::::::::::::::: solution
 
