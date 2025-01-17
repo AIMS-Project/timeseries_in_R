@@ -27,11 +27,13 @@ During this lesson we will familiarize ourselves with the data. This data was co
 the Aquatic Intermittency effect of Microbiomes in Streams (AIMS; OSF OIA 2019603).  
 
 In this episode we will review how to 
+
 1. Make a project in R
 2. Familiarize ourselves with the data
 3. Define common terms used in this lesson
 4. Import .csv files
 5. Introuduce differences between coding in base R and using tidyverse.
+   
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
