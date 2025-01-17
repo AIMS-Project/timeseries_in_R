@@ -555,9 +555,8 @@ recorded as NA or N/A or blank cells)</p>
 mean and smoothing out remainders to get overall trends in the data.</p>
 <div class="section level3">
 <h3 id="understanding-the-data">Understanding the Data<a class="anchor" aria-label="anchor" href="#understanding-the-data"></a></h3>
-<p>Make sure the data downloaded from <a href="">HydroShare for this
-lesson</a> are moved into the ‘data’ folder so you can easily find
-it.</p>
+<p>Make sure the data downloaded for <a href="KNZ_SW_temp_stage_pipeline_mk.csv">surface water</a> and <a href="KNZ_GW_temp_stage_pipeline_mk.csv">ground water</a> are moved into
+the ‘data’ folder so you can easily find it.</p>
 <p>An important first step for any project is making sure you are
 familiar with the data.</p>
 <p>This lesson uses data collected for the Aquatic Intermittency effects
@@ -693,7 +692,8 @@ the data.</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">summary</span><span class="op">(</span><span class="va">sw_konza</span><span class="op">)</span></span></code></pre>
+<code class="sourceCode R"><span><span class="fu">summary</span><span class="op">(</span><span class="va">konza_sw</span><span class="op">)</span></span>
+<span><span class="fu">summary</span><span class="op">(</span><span class="va">konza_gw</span><span class="op">)</span></span></code></pre>
 </div>
 <p>Which will tell you the min, 1st quartile, median, mean, 3rd
 quartile, and maximum values for numeric columns in the dataset.</p>
