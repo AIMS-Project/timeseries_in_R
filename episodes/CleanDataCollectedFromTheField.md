@@ -27,7 +27,17 @@ In this episode, we will clean the field data and prepare the data for analysis 
 2. Interpolate missing data  
 3. Change data from UTC to CT
 
-We will use the files Konza_GW.csv and Konza_SW.csv imported in the introduction to the timeseries lesson and the same R packages. Please remember, that we looked at a summary of the data and noticed some weird values. As a reminder we will need packages ggplot2, tidyr, readr, lubridate, zoo, and dplyr.
+We will use the files Konza_GW.csv and Konza_SW.csv imported in the introduction to the timeseries lesson and the same R packages. Please remember, that we looked at a summary of the data and noticed some weird values. As a reminder we will need packages ggplot2, tidyverse, readr, lubridate, and zoo.
+
+```r
+install.packages("ggplot2", "tidyverse", "readr", "lubridate", "zoo")
+
+library(ggplot2)
+library(tidyverse)
+library(readr)
+library(lubridate)
+library(zoo)
+```
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
@@ -44,7 +54,9 @@ Make sure everyone knows what datasets we are using and to upload now.
 ```r
 str(konza_sw)
 
-#since my timestamp was imported in as a character I will change the timestamp to a datetime format. The data is in the UTC timezone but will need to be changed to the CT timezone.
+# Since my timestamp was imported in as a character I will change the timestamp to a datetime format.
+# We can assume the timezones were imported the same way for both datasets.
+# The data is in the UTC timezone.
 
 konza_sw$timestamp<- as.POSIXct(konza_sw$timestamp, format = "%m/%d/%Y %H:%M", tz='UTC')
 konza_gw$timestamp<- as.POSIXct(konza_gw$timestamp, format = "%m/%d/%Y %H:%M", tz='UTC')
@@ -94,16 +106,18 @@ spc_tbl_ [67,804 × 5] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::: exercise
 
-Since the data is in UTC, we can change the data to CT 
+Since the data is in UTC, we can change the data to Central Time
 
 
 ```r
 #confirm the data is in UTC
+
 head(konza_sw$timestamp)
 
 #Change the timezone to CT
 konza_sw$timestamp<- as.POSIXct(konza_sw$timestamp, format="%Y-%m-%d %H:%M", tz='America/Chicago')
 konza_gw$timestamp<- as.POSIXct(konza_gw$timestamp, format="%Y-%m-%d %H:%M", tz='America/Chicago')
+
 #check what timezone our data is in now
 head(konza_sw$timestamp)
 head(konza_gw$timestamp)
@@ -133,12 +147,12 @@ head(konza_gw$timestamp)
 ::::::::::::::::::::::::::::::::: exercise
 
 ```r
-library(ggplot2)
 
-ggplot(data= konza_sw)+
- geom_line(aes(x=timestamp, y=SW_Level_ft))+
- xlab("Time")+
- ylab("Surface Water Level (ft)")
+ggplot(data= konza_sw)+                        # name the dataframe you want to use
+ geom_line(aes(x=timestamp, y=SW_Level_ft))+   # set the x and y axes
+ xlab("Time")+                                 # make a label for the x axis
+ ylab("Surface Water Level (ft)")              # make a label for the y axis
+
 ```
 
 :::::::::::::::::::::::: solution 
@@ -321,7 +335,12 @@ konza_gw$GW_Temp_PT_C[konza_gw$GW_Temp_PT_C< -100]<- NA
 
 # tidyR example
 konza_sw <- konza_sw %>%
-mutate(SW_Level_ft = if_else(SW_Level_ft < 0, 0, SW_Level_ft))
+  mutate(SW_Level_ft = replace(SW_Level_ft, SW_Level_ft < 0, NA),
+          SW_Temp_PT_C = replace(SW_Temp_PT_C, SW_Temp_PT_C < -100, NA))
+
+konza_gw <- konza_gw %>%
+  mutate(GW_Level_ft = replace(GW_Level_ft, GW_Level_ft < 0, NA),
+         GW_Temp_PT_C = replace(GW_Temp_PT_C, GW_Temp_PT_C < -100, NA))
 
 #subset and plot to see if our changes worked
 subset(konza_sw, SW_Level_ft < 0 )
