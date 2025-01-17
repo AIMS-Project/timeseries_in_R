@@ -188,8 +188,7 @@ to get overall trends in the data.
 
 ### Understanding the Data
 
-Make sure the data downloaded from [HydroShare for this lesson]() are moved into the 'data' folder so you 
-can easily find it. 
+Make sure the data downloaded for [surface water](learners/KNZ_SW_temp_stage_pipeline_mk.csv) and [ground water](learners/KNZ_GW_temp_stage_pipeline_mk.csv) are moved into the 'data' folder so you can easily find it. 
 
 An important first step for any project is making sure you are familiar with the data. 
 
@@ -264,13 +263,26 @@ Do you have guesses as to what the columns mean?
 :::::::::::::::::::::::: instructor
 
 This data was collected between June 9 2021 and September 23 2022
+
 The EXO2 collects data every 15 minutes.
-Column names: 
+
+Surface Water Column names: 
 1. X - default column, row number
 2. timestamp - the day / time of measurement
 3. Temp_PT_C - the temperature measured
 4. yearMonth - the year and month of each measurement
 5. Level_ft - water stage data
+
+Ground Water Column names: 
+1. X - default column, row number
+2. timestamp - the day / time of measurement
+3. GW_Temp - the temperature measured
+4. alphaQf - a QA/QC flag for the data
+5. betaQf - a QA/QC flag for the data
+6. betaQfMAD - a QA/QC flag for the data
+7. yearMonth - the year and month of each measurement
+8. wetQf - data QA/QC flag indicating wet or dry
+9. GW_Level_ft - water stage data
 
 ::::::::::::::::::::::::
 
@@ -299,7 +311,8 @@ Once your data is uploaded to R, it can be a lot easier to understand the data.
 To get a data summary, use
 
 ```r
-summary(sw_konza)
+summary(konza_sw)
+summary(konza_gw)
 ```
 
 Which will tell you the min, 1st quartile, median, mean, 3rd quartile, and maximum values 
