@@ -310,7 +310,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Clean data collected from the field</h1>
-        <p>Last updated on 2025-01-14 |
+        <p>Last updated on 2025-01-17 |
 
         <a href="https://aims-project.github.io/timeseries_in_R/edit/main/episodes/CleanDataCollectedFromTheField.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -356,20 +356,34 @@ for analysis and visualization. To do this, we will:</p>
 </ol><p>We will use the files Konza_GW.csv and Konza_SW.csv imported in the
 introduction to the timeseries lesson and the same R packages. Please
 remember, that we looked at a summary of the data and noticed some weird
-values. As a reminder we will need packages ggplot2, tidyr, readr,
-lubridate, zoo, and dplyr.</p>
+values. As a reminder we will need packages ggplot2, tidyverse, readr,
+lubridate, and zoo.</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">install.packages</span><span class="op">(</span><span class="st">"ggplot2"</span>, <span class="st">"tidyverse"</span>, <span class="st">"readr"</span>, <span class="st">"lubridate"</span>, <span class="st">"zoo"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">ggplot2</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">readr</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">lubridate</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">zoo</span><span class="op">)</span></span></code></pre>
+</div>
 
 </section><div class="section level2 exercise">
 <h2 id="check-the-data-format">Check the data format<a class="anchor" aria-label="anchor" href="#check-the-data-format"></a></h2>
 <p>Let’s look at the data structure and make sure the data is in the
 correct format.</p>
-<div class="codewrapper sourceCode" id="cb1">
+<div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">str</span><span class="op">(</span><span class="va">konza_sw</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">#since my timestamp was imported in as a character I will change the timestamp to a datetime format. The data is in the UTC timezone but will need to be changed to the CT timezone.</span></span>
+<span><span class="co"># Since my timestamp was imported in as a character I will change the timestamp to a datetime format.</span></span>
+<span><span class="co"># We can assume the timezones were imported the same way for both datasets.</span></span>
+<span><span class="co"># The data is in the UTC timezone.</span></span>
 <span></span>
 <span><span class="va">konza_sw</span><span class="op">$</span><span class="va">timestamp</span><span class="op">&lt;-</span> <span class="fu">as.POSIXct</span><span class="op">(</span><span class="va">konza_sw</span><span class="op">$</span><span class="va">timestamp</span>, format <span class="op">=</span> <span class="st">"%m/%d/%Y %H:%M"</span>, tz<span class="op">=</span><span class="st">'UTC'</span><span class="op">)</span></span>
 <span><span class="va">konza_gw</span><span class="op">$</span><span class="va">timestamp</span><span class="op">&lt;-</span> <span class="fu">as.POSIXct</span><span class="op">(</span><span class="va">konza_gw</span><span class="op">$</span><span class="va">timestamp</span>, format <span class="op">=</span> <span class="st">"%m/%d/%Y %H:%M"</span>, tz<span class="op">=</span><span class="st">'UTC'</span><span class="op">)</span></span>
@@ -381,7 +395,7 @@ correct format.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -426,17 +440,19 @@ $ SW_Level_ft : num [1:67804] -9999 -9999 -9999 -9999 -9999 ...
 </div>
 </div>
 <div class="exercise">
-<p>Since the data is in UTC, we can change the data to CT</p>
-<div class="codewrapper sourceCode" id="cb3">
+<p>Since the data is in UTC, we can change the data to Central Time</p>
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#confirm the data is in UTC</span></span>
+<span></span>
 <span><span class="fu">head</span><span class="op">(</span><span class="va">konza_sw</span><span class="op">$</span><span class="va">timestamp</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#Change the timezone to CT</span></span>
 <span><span class="va">konza_sw</span><span class="op">$</span><span class="va">timestamp</span><span class="op">&lt;-</span> <span class="fu">as.POSIXct</span><span class="op">(</span><span class="va">konza_sw</span><span class="op">$</span><span class="va">timestamp</span>, format<span class="op">=</span><span class="st">"%Y-%m-%d %H:%M"</span>, tz<span class="op">=</span><span class="st">'America/Chicago'</span><span class="op">)</span></span>
 <span><span class="va">konza_gw</span><span class="op">$</span><span class="va">timestamp</span><span class="op">&lt;-</span> <span class="fu">as.POSIXct</span><span class="op">(</span><span class="va">konza_gw</span><span class="op">$</span><span class="va">timestamp</span>, format<span class="op">=</span><span class="st">"%Y-%m-%d %H:%M"</span>, tz<span class="op">=</span><span class="st">'America/Chicago'</span><span class="op">)</span></span>
+<span></span>
 <span><span class="co">#check what timezone our data is in now</span></span>
 <span><span class="fu">head</span><span class="op">(</span><span class="va">konza_sw</span><span class="op">$</span><span class="va">timestamp</span><span class="op">)</span></span>
 <span><span class="fu">head</span><span class="op">(</span><span class="va">konza_gw</span><span class="op">$</span><span class="va">timestamp</span><span class="op">)</span></span></code></pre>
@@ -446,7 +462,7 @@ $ SW_Level_ft : num [1:67804] -9999 -9999 -9999 -9999 -9999 ...
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -470,23 +486,22 @@ $ SW_Level_ft : num [1:67804] -9999 -9999 -9999 -9999 -9999 ...
 <hr class="half-width"><p>Now, let’s plot the surface water level data and the water
 temperature data and evaluate where there might be erroneous values</p>
 <div class="exercise">
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">library</span><span class="op">(</span><span class="va">ggplot2</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span>data<span class="op">=</span> <span class="va">konza_sw</span><span class="op">)</span><span class="op">+</span></span>
-<span> <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">timestamp</span>, y<span class="op">=</span><span class="va">SW_Level_ft</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
-<span> <span class="fu">xlab</span><span class="op">(</span><span class="st">"Time"</span><span class="op">)</span><span class="op">+</span></span>
-<span> <span class="fu">ylab</span><span class="op">(</span><span class="st">"Surface Water Level (ft)"</span><span class="op">)</span></span></code></pre>
+<code class="sourceCode R"><span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span>data<span class="op">=</span> <span class="va">konza_sw</span><span class="op">)</span><span class="op">+</span>                        <span class="co"># name the dataframe you want to use</span></span>
+<span> <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">timestamp</span>, y<span class="op">=</span><span class="va">SW_Level_ft</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>   <span class="co"># set the x and y axes</span></span>
+<span> <span class="fu">xlab</span><span class="op">(</span><span class="st">"Time"</span><span class="op">)</span><span class="op">+</span>                                 <span class="co"># make a label for the x axis</span></span>
+<span> <span class="fu">ylab</span><span class="op">(</span><span class="st">"Surface Water Level (ft)"</span><span class="op">)</span>              <span class="co"># make a label for the y axis</span></span></code></pre>
 </div>
 <div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <figure><img src="https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_level_raw.png?raw=true" alt="Raw surface water level (ft)" class="figure mx-auto d-block"><div class="figcaption">Raw surface water level (ft)</div>
 </figure></div>
@@ -496,7 +511,7 @@ temperature data and evaluate where there might be erroneous values</p>
 </div>
 <div class="exercise">
 <p>Let’s plot the surface water temperature data.</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -510,7 +525,7 @@ temperature data and evaluate where there might be erroneous values</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <figure><img src="https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_temp_raw.png?raw=true" alt="Surface Water Temperature: Raw" class="figure mx-auto d-block"><div class="figcaption">Surface Water Temperature: Raw</div>
 </figure></div>
@@ -528,18 +543,18 @@ temperature data and evaluate where there might be erroneous values</p>
 <p>Fill in the blank: Using code from plotting above to recreate the
 water level and temperature plots using the groundwater dataset.
 Visually identify outliers.</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span> _____)<span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>____, <span class="at">y=</span>____))<span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a> <span class="fu">xlab</span>(<span class="st">"Time"</span>)<span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a> <span class="fu">ylab</span>(<span class="st">"Temperature (degrees symbol C)"</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span> _____)<span class="sc">+</span></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>____, <span class="at">y=</span>_____))<span class="sc">+</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a> <span class="fu">xlab</span>(<span class="st">"Time"</span>)<span class="sc">+</span></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a> <span class="fu">ylab</span>(<span class="st">"Water Level (ft)"</span>)</span></code></pre>
+<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span> _____)<span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>____, <span class="at">y=</span>____))<span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a> <span class="fu">xlab</span>(<span class="st">"Time"</span>)<span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a> <span class="fu">ylab</span>(<span class="st">"Temperature (degrees symbol C)"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span> _____)<span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>____, <span class="at">y=</span>_____))<span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a> <span class="fu">xlab</span>(<span class="st">"Time"</span>)<span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a> <span class="fu">ylab</span>(<span class="st">"Water Level (ft)"</span>)</span></code></pre>
 </div>
 </div>
 </div>
@@ -549,7 +564,7 @@ Visually identify outliers.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Output </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <figure><img src="https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/gw_level_raw.png?raw=true" alt="Raw groundwater level" class="figure mx-auto d-block"><div class="figcaption">Raw groundwater level</div>
 </figure><figure><img src="https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/gw_temp_raw.png?raw=true" alt="Raw groundwater temperature" class="figure mx-auto d-block"><div class="figcaption">Raw groundwater temperature</div>
@@ -582,21 +597,21 @@ values? Use this code to change outliers to NA.</h3>
 <p>Test the following code using the surface water dataset followed by
 the groundwater dataset. Don’t forget to change the dataframe when
 evaluating the groundwater dataset:</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>a<span class="er">)</span> konza_sw[<span class="fu">c</span>(<span class="dv">67780</span><span class="sc">:</span><span class="dv">67830</span>),]</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>b<span class="er">)</span> konza_sw[konza_sw<span class="sc">$</span>timestamp <span class="sc">&gt;</span> <span class="st">"2022-09-23 11:50"</span> <span class="sc">&amp;</span> konza_sw<span class="sc">$</span>timestamp<span class="sc">&lt;</span> <span class="st">"2022-09-25 12:00"</span>,]</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>c<span class="er">)</span> <span class="fu">subset</span>(konza_sw, SW_Level_ft <span class="sc">&lt;</span> <span class="dv">0</span> )</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>d<span class="er">)</span> konza_sw[<span class="fu">is.na</span>(konza_sw<span class="sc">$</span>SW_Level_ft),]</span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co"># you can also use the tidyverse package to subset data:</span></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>e<span class="er">)</span> konza_sw <span class="sc">%&gt;%</span> </span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>  <span class="fu">filter</span>(SW_Level_ft <span class="sc">&lt;</span> <span class="dv">0</span>)</span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>f<span class="er">)</span> konza_sw <span class="sc">%&gt;%</span> </span>
-<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(SW_Level_ft))</span></code></pre>
+<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>a<span class="er">)</span> konza_sw[<span class="fu">c</span>(<span class="dv">67780</span><span class="sc">:</span><span class="dv">67830</span>),]</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>b<span class="er">)</span> konza_sw[konza_sw<span class="sc">$</span>timestamp <span class="sc">&gt;</span> <span class="st">"2022-09-23 11:50"</span> <span class="sc">&amp;</span> konza_sw<span class="sc">$</span>timestamp<span class="sc">&lt;</span> <span class="st">"2022-09-25 12:00"</span>,]</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>c<span class="er">)</span> <span class="fu">subset</span>(konza_sw, SW_Level_ft <span class="sc">&lt;</span> <span class="dv">0</span> )</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>d<span class="er">)</span> konza_sw[<span class="fu">is.na</span>(konza_sw<span class="sc">$</span>SW_Level_ft),]</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co"># you can also use the tidyverse package to subset data:</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>e<span class="er">)</span> konza_sw <span class="sc">%&gt;%</span> </span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>  <span class="fu">filter</span>(SW_Level_ft <span class="sc">&lt;</span> <span class="dv">0</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>f<span class="er">)</span> konza_sw <span class="sc">%&gt;%</span> </span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(SW_Level_ft))</span></code></pre>
 </div>
 </div>
 </div>
@@ -606,7 +621,7 @@ evaluating the groundwater dataset:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Output </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -700,7 +715,7 @@ those from our dataset by setting them to NA. For surface water level we
 will remove values below 0 but for temperatures, we will set a low
 threshold where we will assume the value is incorrect.</p>
 <div class="exercise">
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -713,7 +728,12 @@ threshold where we will assume the value is incorrect.</p>
 <span></span>
 <span><span class="co"># tidyR example</span></span>
 <span><span class="va">konza_sw</span> <span class="op">&lt;-</span> <span class="va">konza_sw</span> <span class="op">%&gt;%</span></span>
-<span><span class="fu">mutate</span><span class="op">(</span>SW_Level_ft <span class="op">=</span> <span class="fu">if_else</span><span class="op">(</span><span class="va">SW_Level_ft</span> <span class="op">&lt;</span> <span class="fl">0</span>, <span class="fl">0</span>, <span class="va">SW_Level_ft</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>SW_Level_ft <span class="op">=</span> <span class="fu">replace</span><span class="op">(</span><span class="va">SW_Level_ft</span>, <span class="va">SW_Level_ft</span> <span class="op">&lt;</span> <span class="fl">0</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
+<span>          SW_Temp_PT_C <span class="op">=</span> <span class="fu">replace</span><span class="op">(</span><span class="va">SW_Temp_PT_C</span>, <span class="va">SW_Temp_PT_C</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">100</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">konza_gw</span> <span class="op">&lt;-</span> <span class="va">konza_gw</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>GW_Level_ft <span class="op">=</span> <span class="fu">replace</span><span class="op">(</span><span class="va">GW_Level_ft</span>, <span class="va">GW_Level_ft</span> <span class="op">&lt;</span> <span class="fl">0</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
+<span>         GW_Temp_PT_C <span class="op">=</span> <span class="fu">replace</span><span class="op">(</span><span class="va">GW_Temp_PT_C</span>, <span class="va">GW_Temp_PT_C</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">100</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#subset and plot to see if our changes worked</span></span>
 <span><span class="fu">subset</span><span class="op">(</span><span class="va">konza_sw</span>, <span class="va">SW_Level_ft</span> <span class="op">&lt;</span> <span class="fl">0</span> <span class="op">)</span></span>
@@ -746,7 +766,7 @@ threshold where we will assume the value is incorrect.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
 <div class="accordion-body">
 <figure><img src="https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_level_edit.png?raw=true" alt="Surface water level" class="figure mx-auto d-block"><div class="figcaption">Surface water level</div>
 </figure><figure><img src="https://github.com/AIMS-Project/timeseries_in_R/blob/main/instructors/sw_temp_edit.png?raw=true" alt="Surface water temperature" class="figure mx-auto d-block"><div class="figcaption">Surface water temperature</div>
@@ -760,7 +780,7 @@ threshold where we will assume the value is incorrect.</p>
 are in our dataset. This information may be useful if you need to report
 your results.</p>
 <div class="exercise">
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -781,7 +801,7 @@ your results.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
   <h4 class="accordion-header" id="headingSolution8"> Show me the solution </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -808,7 +828,7 @@ Let’s interpolate missing values in sections that have less than 12
 consecutive NA values and save the interpolated data as a separate
 column.</p>
 <div class="exercise">
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -823,7 +843,7 @@ column.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
   <h4 class="accordion-header" id="headingSolution9"> Show me the solution </h4>
 </button>
-<div id="collapseSolution9" class="accordion-collapse collapse" data-bs-parent="#accordionSolution9" aria-labelledby="headingSolution9">
+<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -844,7 +864,7 @@ column.</p>
 <div class="callout-content">
 <p>Adjust the following code for each column and dataset to find the new
 fraction of NA values:</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -865,7 +885,7 @@ fraction of NA values:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution10" aria-expanded="false" aria-controls="collapseSolution10">
   <h4 class="accordion-header" id="headingSolution10"> Output </h4>
 </button>
-<div id="collapseSolution10" class="accordion-collapse collapse" data-bs-parent="#accordionSolution10" aria-labelledby="headingSolution10">
+<div id="collapseSolution10" class="accordion-collapse collapse" aria-labelledby="headingSolution10" data-bs-parent="#accordionSolution10">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -950,7 +970,7 @@ any links that you are not going to use.
   "url": "https://timeseries_in_R.github.io/NA/CleanDataCollectedFromTheField.html",
   "identifier": "https://timeseries_in_R.github.io/NA/CleanDataCollectedFromTheField.html",
   "dateCreated": "2024-10-23",
-  "dateModified": "2025-01-14",
+  "dateModified": "2025-01-17",
   "datePublished": "2025-01-17"
 }
 
