@@ -66,10 +66,22 @@ Let's say we wanted to make the surface water data set into monthly averages, th
 #first, lets aggregate the data to yearMonth. We will use our interpolated data columns from the  clean data lesson. 
 konza_sw_yrmnth<- aggregate(konza_sw[,c(6,7)], list(konza_sw$yearMonth), FUN=mean, na.rm=T) #aggregate the data columns temperature and water level by yearMonth
 
+# tidyr example with group_by() and summarize():
+td_sw_yrmth <- tidy_konza_sw %>% 
+  group_by(yearMonth) %>% 
+  summarize(SW_TEMP_PT_C_int = mean(SW_TEMP_PT_C_int), na.rm = TRUE,
+            SW_Level_ft_int = mean(SW_Level_ft_int), na.rm = TRUE)
+
 #melt the dataframe so that there are three columns; timestamp, value, and variable columns. Note that this uses the data.table melt function.
 konza_sw_yrmnth_long<- melt(konza_sw_yrmnth, id.var="Group.1")
 konza_sw_yrmnth_long$Group.1<- ym(konza_sw_yrmnth_long$Group.1) #change the character year-month format to a date format. This will add the first day of the month, but we need a day value to format the date value and plot
 head(konza_sw_yrmnth_long)
+
+# tidyr example with pivot_longer()
+konza_sw_yrmnth_long <- td_sw_yrmth %>% 
+  pivot_longer(cols = c("SW_TEMP_PT_C_int", "SW_Level_ft_int"),
+               names_to = "variable",
+               values_to = "value")
 
 #plot the data using ggplot facets
 ggplot(data=konza_sw_yrmnth_long)+ 
@@ -78,6 +90,8 @@ ggplot(data=konza_sw_yrmnth_long)+
   facet_grid(variable~., scales='free', 
              labeller=as_labeller(c('SW_TEMP_PT_C_int'='Surface Water Temperature (°C)','SW_Level_ft_int'= "Surface Water Level (ft)")))+
   theme_bw()
+
+# for the tidyr example, Group.1 = yearMonth
 
 ```
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: solution
@@ -122,9 +136,19 @@ Let's say we wanted to make the surface water data set into an annual timeframe.
 konza_sw$yr<- year(konza_sw$timestamp)
 head(konza_sw)
 
+# using tidyr; mutate()
+konza_sw <- konza_sw %>% 
+  mutate(yr = year(konza_sw$timestamp))
+
 #aggregate by year
 konza_sw_annual<- aggregate(konza_sw[,c(6,7)], list(konza_sw$yr), FUN=mean, na.rm=T)
 head(konza_sw_annual)
+
+# using tidyr; summarize()
+konza_sw_annual <- konza_sw %>% 
+  group_by(yr) %>% 
+  summarize(SW_TEMP_PT_C_int = mean(SW_TEMP_PT_C_int, na.rm = TRUE),
+            SW_Level_ft_int = mean(SW_Level_ft_int, na.rm = TRUE))
 
 ```
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: solution
@@ -155,20 +179,45 @@ Fill in the blank in the code below to aggregate the data by year-month, melt to
 
 ```r
 #aggregate to year-month
-konza_gw_yrmnth<- aggregate(_______, list(___________), FUN=mean, na.rm=T) 
+konza_gw_yrmnth<- aggregate(_______, list(___________), FUN=mean, na.rm=T)
+
+# using tidyR to summarize()
+konza_gw_yrmnth <- konza_gw %>% 
+  group_by(_____) %>% 
+  summarize(SW_TEMP_PT_C_int = _____(SW_TEMP_PT_C_int, na.rm = ____),
+            SW_Level_ft_int = _____(SW_Level_ft_int, na.rm = ____))
+
 
 #melt the dataframe so that there are three columns
 konza_gw_yrmnth_long<- melt(_____, id.var="Group.1")
 konza_gw_yrmnth_long$Group.1<- ym(konza_gw_yrmnth_long$Group.1) #change the character year-month format to a date format
 head(konza_gw_yrmnth_long)
 
+# using tidyr
+konza_gw_yrmnth_long <- konza_gw_yrmnth %>% 
+  pivot_longer(cols = c("_______", "_______"),
+               names_to = "_______",
+               values_to = "______")
+
 #add the year column
 konza_gw$yr<- year(________)
 head(konza_sw)
 
+# use mutate to add 'yr' column
+konza_gw <- konza_gw %>% 
+  ______(yr = year(konza_gw$_____))
+head(konza_gw)
+
+
 #aggregate by year
 konza_gw_annual<- aggregate(________, list(_________), FUN=mean, na.rm=T)
 head(konza_gw_annual)
+
+# summarize by year
+konza_gw_annual <- konza_gw %>% 
+  group_by(_____) %>% 
+  summarize(SW_TEMP_PT_C_int = _____(SW_TEMP_PT_C_int, na.rm = TRUE),
+            SW_Level_ft_int = ______(SW_Level_ft_int, na.rm = TRUE))
 
 #format the date column
 konza_gw_yrmnth_long$Group.1<- ym(__________)
@@ -223,19 +272,34 @@ head(konza_gw_annual)
 ## Compare groundwater and surface water data
 
 What if we want to compare the monthly surface water and groundwater values? We can merge the two dataframes and plot both together. 
+Note - to merge the datasets by adding rows using rbind() below, both datasets need the exact same columns
 
-#Add a dataset column, and bind the month-day groundwater and surface water dataframes
+Add a dataset column, and bind the month-day groundwater and surface water dataframes
 
 ```r
 #add the datasets so we can keep track of which data belongs where
 konza_gw_yrmnth_long$dataset<- 'Groundwater'
 konza_sw_yrmnth_long$dataset<- 'Surface Water'
 
-konza_yrmnth<- rbind(konza_gw_yrmnth_long, konza_sw_yrmnth_long) #since the columns are the same, we can use rbind to combine the dataframes
+# you can also do this with mutate
+konza_gw_yrmnth_long <- konza_gw_yrmnth_long %>%
+  mutate(dataset = 'Groundwater')
+konza_sw_yrmnth_long <- konza_sw_yrmnth_long %>%
+  mutate(dataset = 'Surface Water')
+
+#since the columns are the same, we can use rbind to combine the dataframes
+# rbind is "row bind" - only possible when the two datasets have the same columns
+konza_yrmnth<- rbind(konza_gw_yrmnth_long, konza_sw_yrmnth_long)
 
 #remove GW and SW labels from the variable columns so that we can plot these variables together for groundwater and surface water
 konza_yrmonth$variable<- gsub(pattern = 'GW_', replacement = "", konza_yrmonth$variable)
 konza_yrmonth$variable<- gsub(pattern = 'SW_', replacement = "", konza_yrmonth$variable)
+
+# can also use mutate() in tidyR
+konza_yrmnth <- konza_yrmnth %>% 
+  mutate(pattern = 'SW_', replacement = "", variable, 
+         pattern = 'GW_', replacement = "", variable)
+
 ```
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: solution
 ```output
@@ -261,6 +325,8 @@ ggplot(data=konza_yrmonth)+
                                                              'Level_ft_int'= "Water Level (ft)")))+
   theme_bw()
 
+# if using the tidyr examples, Group.1 = yearMonth
+
 ```
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: solution
 
@@ -279,8 +345,8 @@ To keep our R project neat, save these files in the folder "data_processed".
 Tip - use names that are short, but clear.
 
 ```r
-write.csv(konza_sw, ".../data_processed/surfacewater_KNZ_clean.csv"
-write.csv(konza_gw, ".../data_processed/groundwater_KNZ_clean.csv"
+write.csv(konza_sw, ".../data_processed/surfacewater_KNZ_clean.csv")
+write.csv(konza_gw, ".../data_processed/groundwater_KNZ_clean.csv")
 write.csv(konza_yrmonth, ".../data_processed/gw_sw_yrmnth_KNZ.csv)
 ```
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -305,13 +371,4 @@ rm(list = ls())
 BE AWARE! Whenever you remove something from the environment there is no easy "back" or "undo" button in R. Always make sure you have 
 the version of the files that you need to continue with your work!
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: exercise
-
-## Upload the cleaned dataframes
-
-
-
-```r
-
-```
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+In the next episode we will start by uploading our 3 cleaned data frames. 
