@@ -209,7 +209,10 @@ or space and are also commonly referred to as intermittent rivers and ephemeral 
 This dataset was collected from an [EXO2 Multiparameter Sonde](https://www.ysi.com/exo2) that can measure 
 mutliple water chemistry parameters, including: conductivity, temperature, dissolved oxygen, pH, and others. 
 
-One of these sensors was deployed in King's Creek and the Konza Biological Prairie.
+One of these sensors was deployed in King's Creek and the Konza Prairie Biological Station (KPBS).
+
+KPBS is a well known stream study site - famous for its prescirbed burns and bison grazing.
+![Bison](timeseries_in_R/blob/main/episodes/bison.png)
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
