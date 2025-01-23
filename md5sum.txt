@@ -10,6 +10,6 @@
 "episodes/03_manipulating.md" "34e1b96dc8b1571a9b26a801f0f9d608" "site/built/03_manipulating.md" "2025-01-17"
 "instructors/instructor-notes.md" "cae72b6712578d74a49fea7513099f8c" "site/built/instructor-notes.md" "2024-11-19"
 "learners/reference.md" "1c7cc4e229304d9806a13f69ca1b8ba4" "site/built/reference.md" "2024-11-19"
-"learners/setup.md" "df27f08a777b97c8423a105934c567c9" "site/built/setup.md" "2024-11-24"
+"learners/setup.md" "cc7784e327f6906219961a2e8df4365d" "site/built/setup.md" "2025-01-23"
 "profiles/learner-profiles.md" "60b93493cf1da06dfd63255d73854461" "site/built/learner-profiles.md" "2024-11-19"
 "renv/profiles/lesson-requirements/renv.lock" "779bcef0e256c2a11158c6595854657d" "site/built/renv.lock" "2024-11-19"
