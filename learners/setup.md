@@ -22,7 +22,6 @@ To successfully participate in this course, we ask that Learners meet the follow
 
 We will study changes in surfacewater and groundwater temperatures and stage (water level) over time. The datasets are uploaded as separate .csv files (comma-separated values), one for surfacewater data and one for groundwater data. Each row holds information for a single time point (in 15 minute intervals) and the columns represent the different variables we will study. 
 
-[show first 5 rows of one dataset?]
 
 ## Data Sets
 
@@ -37,8 +36,7 @@ Within your Timeseries_R folder, create an .Rproject for this workshop with the 
 - data
 - data_processed
 - scripts
-Download the [ [data zip file](https://example.com/FIXME) ] and move into the 'data' folder
-Unzip the .csv files to the 'data' folder. This may create another folder.
+Download the KNZ_GW_temp_stage.csv and KNZ_SW_temp_stage.csv and move into the 'data' folder
 
 We will: 
 - load data into the R enviornment
@@ -50,7 +48,7 @@ We will:
 
 This course requires the following packages:
 
-- tidyverse (includes dyplr, ggplot2, and lubridate)
+- tidyverse (includes dyplr, ggplot2, readr, zoo, and lubridate)
 
 ```r
 
@@ -58,41 +56,4 @@ install.packages("tidyverse")
 
 ```
 
-## i don't think we need anything else here... maybe a quick note about differences using windows / mac / linux?
-
-::::::::::::::::::::::::::::::::::::::: discussion
-
-### Details
-
-Setup for different systems can be presented in dropdown menus via a `spoiler`
-tag. They will join to this discussion block, so you can give a general overview
-of the software used in this lesson here and fill out the individual operating
-systems (and potentially add more, e.g. online setup) in the solutions blocks.
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::: spoiler
-
-### Windows
-
-Use PuTTY
-
-::::::::::::::::::::::::
-
-:::::::::::::::: spoiler
-
-### MacOS
-
-Use Terminal.app
-
-::::::::::::::::::::::::
-
-
-:::::::::::::::: spoiler
-
-### Linux
-
-Use Terminal
-
-::::::::::::::::::::::::
 
